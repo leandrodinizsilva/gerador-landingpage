@@ -39,11 +39,11 @@ $db = $DB->connect();
                 <ul class="nav navbar-nav navbar-right topo">
                     <li><a href="<?php echo URL_DEFINITIVA ?>template.php">Início</a></li>
                     <li><a href="<?php echo URL_DEFINITIVA ?>menu.php">Menu</a></li>
-                    <li><a href="<?php echo URL_DEFINITIVA ?>kyara.php">Bloco 1</a></li>
-                    <li><a href="<?php echo URL_DEFINITIVA ?>tratamento.php">Bloco 2</a></li>
-                    <li><a href="<?php echo URL_DEFINITIVA ?>atendimento.php">Bloco 3</a></li>
-                    <li><a href="<?php echo URL_DEFINITIVA ?>atendimento.php">Bloco 4</a></li>
-                    <li><a href="<?php echo URL_DEFINITIVA ?>atendimento.php">Rodapé</a></li>
+                    <li><a href="<?php echo URL_DEFINITIVA ?>bloco1.php">Bloco 1</a></li>
+                    <li><a href="<?php echo URL_DEFINITIVA ?>bloco2.php">Bloco 2</a></li>
+                    <li><a href="<?php echo URL_DEFINITIVA ?>bloco3.php">Bloco 3</a></li>
+                    <li><a href="<?php echo URL_DEFINITIVA ?>bloco4.php">Bloco 4</a></li>
+                    <li><a href="<?php echo URL_DEFINITIVA ?>rodape.php">Rodapé</a></li>
                     <li>
                         <a href="<?php echo URL_DEFINITIVA ?>inc/logout.php">
                             <i class='glyphicon glyphicon-off'></i>

@@ -31,7 +31,7 @@ if (1 == 1) {
     </div>
     <div class="box col-md-4">
         <div class="panel panel-primary shadow">
-            <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Adicionar Menu</div>
+            <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 1</div>
             <div class="padding-interno">
                <table class="table" style="margin-bottom:0">
                 <tbody>
@@ -56,9 +56,9 @@ if (1 == 1) {
                             <div class="form-group">
                                 <input type='submit' class='btn btn-block btn-success' name='adicionar' value='Adicionar' />
                                 <br />
-                                <a href="bloco1.php" class="btn btn-block btn-primary">Próximo >></a>
+                                <a href="bloco2.php" class="btn btn-block btn-primary">Próximo >></a>
                                 <br />
-                                <a href="template.php" class="btn btn-block btn-warning"><< Anterior</a>
+                                <a href="menu.php" class="btn btn-block btn-warning"><< Anterior</a>
                             </td>
                         </tr>
                     </tbody>

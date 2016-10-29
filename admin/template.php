@@ -7,7 +7,7 @@ if (1 == 1) {
     ?>
     <ol class="breadcrumb">
         <li class="active">
-            <i class='glyphicon glyphicon-menu-right'></i> Novo Template
+            <i class='glyphicon glyphicon-menu-right'></i> Início
         </li>
     </ol>
     <!-- <form method="post" enctype="multipart/form-data"> -->
@@ -23,6 +23,14 @@ if (1 == 1) {
                             <div class="form-group">
                                 <label>Título</label>
                                 <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Logotipo</label><a class="mensagem-ajuda" href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
+                                <input type="text" name="logotipo" maxlength="20" class="form-control" placeholder="titulo-icone" />
                             </div>
                         </td>
                     </tr>

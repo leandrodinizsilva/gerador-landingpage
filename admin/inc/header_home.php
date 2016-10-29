@@ -37,7 +37,6 @@ $db = $DB->connect();
             <!-- LINKS -->
             <div class="collapse navbar-collapse menu" id="expandir-menu">
                 <ul class="nav navbar-nav navbar-right topo">
-                    <li><a href="<?php echo URL_DEFINITIVA ?>home.php">Home</a></li>
                     <li><a href="<?php echo URL_DEFINITIVA ?>template.php">Novo</a></li>
                     <li>
                         <a href="<?php echo URL_DEFINITIVA ?>inc/logout.php">

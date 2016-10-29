@@ -51,7 +51,7 @@ if ( isset($_POST['entrar']) ) {
         <!--LOGO E CABEÇALHO-->
         <div class="row">
             <div class="col-xs-12 col-md-12 text-center">
-                <!-- <h2><a href="../"><img src="images/logo_2.jpg" alt="" title="" width="100"/></a></h2><br /> -->
+                <h2><a href="../"><img src="images/logo.png" alt="" title="" width="100"/></a></h2><br />
                 <h4>CONSULTORIA CS</h4>
                 <h4><small>ACESSO AO SISTEMA</small></h4><br />
             </div>
