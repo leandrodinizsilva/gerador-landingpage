@@ -42,6 +42,14 @@ if (1 == 1) {
                     <tr>
                         <td>
                             <div class="form-group">
+                                <label>Cor Selecionado</label>
+                                <input type="text" name="cor_selecionado" placeholder="#ffffff" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
                                 <label>Título</label>
                                 <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
                             </div>
