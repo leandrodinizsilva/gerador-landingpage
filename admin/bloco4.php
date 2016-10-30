@@ -7,7 +7,7 @@ if (1 == 1) {
     ?>
     <ol class="breadcrumb">
         <li class="active">
-            <i class='glyphicon glyphicon-menu-right'></i> <a href="template.php">Bloco 1</a>
+            <i class='glyphicon glyphicon-menu-right'></i> <a href="template.php">Bloco 4</a>
         </li>
     </ol>
     <!-- <form method="post" enctype="multipart/form-data"> -->
@@ -31,7 +31,7 @@ if (1 == 1) {
     </div>
     <div class="box col-md-8">
         <div class="panel panel-primary shadow">
-            <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 1</div>
+            <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 4</div>
             <div class="padding-interno">
                <table class="table" style="margin-bottom:0">
                 <tbody>
@@ -54,8 +54,16 @@ if (1 == 1) {
                     <tr>
                         <td>
                             <div class="form-group">
-                                <label>Imagem</label>
-                                <input type="file" name="logotipo" class="form-control" />
+                                <label>Endereço</label>
+                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
                             </div>
                         </td>
                     </tr>
@@ -72,9 +80,9 @@ if (1 == 1) {
                             <div class="form-group">
                                 <input type='submit' class='btn btn-block btn-success' name='adicionar' value='Adicionar' />
                                 <br />
-                                <a href="bloco2.php" class="btn btn-block btn-primary">Próximo >></a>
+                                <a href="rodape.php" class="btn btn-block btn-primary">Próximo >></a>
                                 <br />
-                                <a href="menu.php" class="btn btn-block btn-warning"><< Anterior</a>
+                                <a href="bloco3.php" class="btn btn-block btn-warning"><< Anterior</a>
                             </td>
                         </tr>
                     </tbody>

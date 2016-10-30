@@ -151,39 +151,6 @@
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 wow fadeInRight" data-wow-delay="1.1s">
-                <div class="portfolio-item">
-                    <a href="#"><img src="assets/img/portfolio/img4.jpg" alt=""></a>
-                    <div class="overlay">
-                        <div class="icons">
-                            <a data-lightbox="image1" href="assets/img/portfolio/img4.jpg" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 wow fadeInRight" data-wow-delay="1.3s">
-                <div class="portfolio-item">
-                    <a href="#"><img src="assets/img/portfolio/img5.jpg" alt=""></a>
-                    <div class="overlay">
-                        <div class="icons">
-                            <a data-lightbox="image1" href="assets/img/portfolio/img5.jpg" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 wow fadeInRight" data-wow-delay="1.5s">
-                <div class="portfolio-item">
-                    <a href="#"><img src="assets/img/portfolio/img6.jpg" alt=""></a>
-                    <div class="overlay">
-                        <div class="icons">
-                            <a data-lightbox="image1" href="assets/img/portfolio/img6.jpg" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </section>
