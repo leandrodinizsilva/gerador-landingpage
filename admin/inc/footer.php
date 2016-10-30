@@ -1,6 +1,6 @@
     <footer>
       <p class="col-md-12 text-center">
-        Consultoria CS - <?= date('Y') ?> | DIREITOS RESERVADOS
+        Jmessi@s - <?= date('Y') ?> | DIREITOS RESERVADOS
       </p>
     </footer>
     <script type="text/javascript" class="init">

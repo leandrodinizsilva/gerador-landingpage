@@ -7,7 +7,7 @@ $db = $DB->connect();
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Admin - Consultoria CS</title>
+    <title>Admin - LandingPage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="agenciaponto">
     <link rel="stylesheet" href="<?php echo URL_DEFINITIVA ?>css/bootstrap.min.css" >
@@ -30,7 +30,7 @@ $db = $DB->connect();
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand page-scroll" href="home.php">
-                    <h3 style="margin-top:0;color: #ccc;">Consultoria CS - Admin</h3>
+                    <h3 style="margin-top:0;color: #ccc;">Admin - LandingPage</h3>
                     <!-- <img src="<?= URL_DEFINITIVA ?>images/logo.png" title="Logotipo Consultoria CS" alt="logotipo consultoria cs" class="topo" width="160"> -->
                 </a>
             </div>

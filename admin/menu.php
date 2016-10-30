@@ -22,6 +22,10 @@ if (1 == 1) {
                             <div class="form-group">
                                 <h4>Teste</h4>
                             </div>
+                            <div class="form-group">
+                                <a href="template.php" class="btn btn-block btn-warning"><< Anterior</a>
+                                <a href="bloco1.php" class="btn btn-block btn-primary">Próximo >></a>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -47,7 +51,7 @@ if (1 == 1) {
                         <td>
                             <div class="form-group">
                                 <label>Ícone</label><a class="mensagem-ajuda" href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
-                                <input type="text" name="logotipo" maxlength="20" class="form-control" placeholder="titulo-icone" />
+                                <input type="text" name="icone" maxlength="20" class="form-control" placeholder="titulo-icone" />
                             </div>
                         </td>
                     </tr>
@@ -55,10 +59,6 @@ if (1 == 1) {
                         <td>
                             <div class="form-group">
                                 <input type='submit' class='btn btn-block btn-success' name='adicionar' value='Adicionar' />
-                                <br />
-                                <a href="bloco1.php" class="btn btn-block btn-primary">Próximo >></a>
-                                <br />
-                                <a href="template.php" class="btn btn-block btn-warning"><< Anterior</a>
                             </td>
                         </tr>
                     </tbody>

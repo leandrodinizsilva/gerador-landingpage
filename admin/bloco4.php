@@ -15,81 +15,77 @@ if (1 == 1) {
         <div class="panel panel-primary shadow">
             <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Template Selecionado</div>
             <div class="padding-interno">
-               <table class="table" style="margin-bottom:0">
+             <table class="table" style="margin-bottom:0">
                 <tbody>
                     <tr>
                         <td>
                             <div class="form-group">
                                 <h4>Teste</h4>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="box col-md-8">
-        <div class="panel panel-primary shadow">
-            <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 4</div>
-            <div class="padding-interno">
-               <table class="table" style="margin-bottom:0">
-                <tbody>
-                    <tr>
-                        <td>
                             <div class="form-group">
-                                <label>Título</label>
-                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Subtítulo</label>
-                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Endereço</label>
-                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Texto</label>
-                                <textarea></textarea>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <input type='submit' class='btn btn-block btn-success' name='adicionar' value='Adicionar' />
-                                <br />
-                                <a href="rodape.php" class="btn btn-block btn-primary">Próximo >></a>
-                                <br />
                                 <a href="bloco3.php" class="btn btn-block btn-warning"><< Anterior</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                                <a href="rodape.php" class="btn btn-block btn-primary">Próximo >></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
+<div class="box col-md-8">
+    <div class="panel panel-primary shadow">
+        <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 4</div>
+        <div class="padding-interno">
+         <table class="table" style="margin-bottom:0">
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Título</label>
+                            <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Subtítulo</label>
+                            <input type="text" name="subtitulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Endereço</label>
+                            <input type="text" name="endereco" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" name="email" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Texto</label>
+                            <textarea name="texto"></textarea>
+                            <br />
+                            <input type='submit' class='btn btn-block btn-success' name='salvar' value='Salvar' />
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
 </div>
 <?php
 include('inc/footer.php');

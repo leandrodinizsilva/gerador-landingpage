@@ -22,6 +22,9 @@ if (1 == 1) {
                             <div class="form-group">
                                 <h4>Teste</h4>
                             </div>
+                            <div class="form-group">
+                                <a href="bloco4.php" class="btn btn-block btn-warning"><< Anterior</a>
+                            </div>
                         </td>
                     </tr>
                     </tbody>
@@ -39,16 +42,14 @@ if (1 == 1) {
                         <td>
                             <div class="form-group">
                                 <label>Texto</label>
-                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                                <input type="text" name="texto" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="form-group">
-                                <input type='submit' class='btn btn-block btn-success' name='adicionar' value='Adicionar' />
-                                <br />
-                                <a href="bloco4.php" class="btn btn-block btn-warning"><< Anterior</a>
+                                <input type='submit' class='btn btn-block btn-success' name='salvar' value='Salvar' />
                             </td>
                         </tr>
                     </tbody>
