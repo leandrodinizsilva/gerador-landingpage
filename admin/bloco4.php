@@ -7,7 +7,7 @@ if (1 == 1) {
     ?>
     <ol class="breadcrumb">
         <li class="active">
-            <i class='glyphicon glyphicon-menu-right'></i> <a href="template.php">Bloco 4</a>
+            <i class='glyphicon glyphicon-menu-right'></i> Bloco 4
         </li>
     </ol>
     <!-- <form method="post" enctype="multipart/form-data"> -->

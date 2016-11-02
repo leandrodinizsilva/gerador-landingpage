@@ -39,6 +39,13 @@ if (1 == 1) {
                                 <label>Selecionar outro template</label>
                                 <select name="posicao" data-rel="chosen" class="form-control">
                                     <option>Selecione...</option>
+                                    <?php
+                                        if ( isset( $sql_template ) ) {
+                                            foreach ($sql_template as $key => $value) {
+                                                echo "<option value='{$value['titulo']}' selected>{$value['titulo']}</option>";
+                                            }
+                                        }
+                                        ?>
                                 </select>
                             </div>
                         </td>

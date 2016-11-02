@@ -1,17 +1,59 @@
 <?php
-// echo $DB->decrypt('mglame9xuNp898GBdO21PT8AQk3UpU6tZRBu5Y6FGt0=');
-$titulo = ( isset($_POST['titulo']) ) ? $_POST['titulo'] : null;
-$texto = ( isset($_POST['texto']) ) ? $_POST['texto'] : null;
-$posicao = ( isset($_POST['posicao']) ) ? $_POST['posicao'] : null;
-$ativo = ( isset($_POST['ativo']) ) ? $_POST['ativo'] : null;
+extract($_POST);
 
-$sql_home = $DB->selectdb( $db,"`posicao`","`home`","1=1" );
+// echo "<pre>";
+// print_r($titulo_template);
+// echo "</pre>";
+/*******************HOME*******************/
+$sql_home = $DB->selectdb(
+        $db,"`id`,`titulo`,`texto`,`posicao`,`imagem`,`status`","`home`","`id` = '{$_GET['edit']}'"
+    );
+    if ( $sql_home_e->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_home_e );
+        $id_e = $obj->id;
+        $titulo_e = $obj->titulo;
+        $texto_e = $obj->texto;
+        $posicao_e = $obj->posicao;
+        $imagem_e = $obj->imagem;
+        $ativo_e = $obj->status;
+    }
 
-$sql_posicoes = $DB->selectdb(
-    $db,"`posicao`","`posicao`","`pagina`='home' ORDER BY `posicao` ASC" );
+/*******************TEMPLATE*******************/
+$titulo_template                = ( isset($_POST['titulo_template']) ) ? $_POST['titulo_template'] : null;
+$logotipo_template            = ( isset($_POST['logotipo_template']) ) ? $_POST['logotipo_template'] : null;
+$cor_primaria_template     = ( isset($_POST['cor_primaria_template']) ) ? $_POST['cor_primaria_template'] : null;
+$cor_secundaria_template = ( isset($_POST['cor_secundaria_template']) ) ? $_POST['cor_secundaria_template'] : null;
+$cor_terciaria_template     = ( isset($_POST['cor_terciaria_template']) ) ? $_POST['cor_terciaria_template'] : null;
 
-$sql_verifica_pos = $DB->selectdb(
-    $db,"COUNT(1)","`posicao`","`pagina`='home' AND `posicao`='{$posicao}'" );
+if ( isset( $_POST['salvar_template']) ) {
+    $return_insert = $DB->insertdb($db,"template",
+        "`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`","
+        '{$titulo_template}',
+        '{$logotipo_template}',
+        '{$cor_primaria_template}',
+        '{$cor_secundaria_template}',
+        '{$cor_terciaria_template}'"
+    );
+    if ( $return_insert == true ) {
+        echo "<script>window.location='template.php?retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
+        // echo "<script>window.location='template.php?retorno=0'</script>";
+    }
+
+}
+
+// $texto = ( isset($_POST['texto']) ) ? $_POST['texto'] : null;
+// $posicao = ( isset($_POST['posicao']) ) ? $_POST['posicao'] : null;
+// $ativo = ( isset($_POST['ativo']) ) ? $_POST['ativo'] : null;
+
+// $sql_home = $DB->selectdb( $db,"`posicao`","`home`","1=1" );
+
+// $sql_posicoes = $DB->selectdb(
+//     $db,"`posicao`","`posicao`","`pagina`='home' ORDER BY `posicao` ASC" );
+
+// $sql_verifica_pos = $DB->selectdb(
+//     $db,"COUNT(1)","`posicao`","`pagina`='home' AND `posicao`='{$posicao}'" );
 
 if ( isset( $_GET['edit'] ) ) {
     $sql_home_e = $DB->selectdb(
