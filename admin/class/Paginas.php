@@ -1,23 +1,27 @@
 <?php
 extract($_POST);
 
-// echo "<pre>";
-// print_r($titulo_template);
-// echo "</pre>";
 /*******************HOME*******************/
-$sql_home = $DB->selectdb(
-        $db,"`id`,`titulo`,`texto`,`posicao`,`imagem`,`status`","`home`","`id` = '{$_GET['edit']}'"
-    );
-    if ( $sql_home_e->num_rows === 1 ) {
-        $obj = $DB->objectdb( $sql_home_e );
-        $id_e = $obj->id;
-        $titulo_e = $obj->titulo;
-        $texto_e = $obj->texto;
-        $posicao_e = $obj->posicao;
-        $imagem_e = $obj->imagem;
-        $ativo_e = $obj->status;
-    }
+if ( isset($_GET['template']) ) {
+    $sql_template_ativo = $DB->selectdb($db,"`titulo`","`template`", "id='{$_GET['template']}'");
 
+    foreach ($sql_template_ativo as $key => $value) {
+        $titulo_ativo = $value['titulo'];
+    }
+}
+
+$sql_template_home = $DB->selectdb($db,"`id`,`titulo`","`template`", 1);
+// echo "<pre>";
+// print_r($db);
+// echo "</pre>";
+
+if ( isset($confirmar_home) && isset($template_home) ) {
+    $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
+    $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$template_home}'" );
+    if ( $return_novo_ativo == true ) {
+        echo "<script>window.location='home.php?template={$template_home}'</script>";
+    }
+}
 /*******************TEMPLATE*******************/
 $titulo_template                = ( isset($_POST['titulo_template']) ) ? $_POST['titulo_template'] : null;
 $logotipo_template            = ( isset($_POST['logotipo_template']) ) ? $_POST['logotipo_template'] : null;
@@ -38,7 +42,6 @@ if ( isset( $_POST['salvar_template']) ) {
         echo "<script>window.location='template.php?retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
-        // echo "<script>window.location='template.php?retorno=0'</script>";
     }
 
 }
