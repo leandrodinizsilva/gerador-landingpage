@@ -26,7 +26,7 @@ if (1 == 1) {
                                         if ( isset($titulo_ativo) ) {
                                             echo "<h4>
                                                         {$titulo_ativo} &nbsp;
-                                                        <a class='btn btn-warning btn-md' href='template.php?template={$_GET['template']}'>
+                                                        <a class='btn btn-warning btn-md' href='template.php?id=1'>
                                                             <i class='glyphicon glyphicon-pencil icon-white'></i>
                                                         </a>
                                                         <a class='btn btn-danger btn-md' href='#' onclick='return confirm(\"Tem certeza?\");'>
@@ -37,13 +37,6 @@ if (1 == 1) {
                                             echo "<h4>Não existe template ativo!</h4>";
                                         }
                                         ?>
-
-                                            <!-- <a class='btn btn-warning btn-md' href='#'>
-                                                <i class='glyphicon glyphicon-pencil icon-white'></i>
-                                            </a>
-                                            <a class='btn btn-danger btn-md' href='#' onclick='return confirm(\"Tem certeza?\");'>
-                                                <i class='glyphicon glyphicon-trash icon-white'></i>
-                                            </a> -->
                                     </div>
                                 </td>
                             </tr>

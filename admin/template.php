@@ -19,7 +19,13 @@ if (1 == 1) {
                     <tr>
                         <td>
                             <div class="form-group">
-                                <h4>Teste</h4>
+                                <?php
+                                if ( isset($titulo_ativo) ) {
+                                    echo "<h4>{$titulo_ativo}</h4>";
+                                } else {
+                                    echo "<h4>Nenhum template selecionado!</h4>";
+                                }
+                                ?>
                             </div>
                             <div class="form-group">
                                 <?php
@@ -32,7 +38,13 @@ if (1 == 1) {
                                 }
                                 ?>
                                 <a href="home.php" class="btn btn-block btn-warning"><< Anterior</a>
-                                <a href="menu.php" class="btn btn-block btn-primary">Próximo >></a>
+                                <?php
+                                if ( isset($_GET['id']) ) {
+                                    echo "<a href='menu.php?id=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                } else {
+                                    echo "<a href='menu.php' class='btn btn-block btn-primary'>Próximo >></a>";
+                                }
+                                ?>
                             </div>
                         </td>
                     </tr>
@@ -92,8 +104,6 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <input type='submit' class='btn btn-block btn-success' name='salvar_template' value='Salvar' />
-                                    <br />
-                                    <a href="menu.php" class="btn btn-block btn-primary">Próximo >></a>
                                 </td>
                             </tr>
                         </tbody>

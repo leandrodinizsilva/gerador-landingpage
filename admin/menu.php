@@ -3,7 +3,7 @@ session_start();
 if (1 == 1) {
 // if ( isset($_SESSION['user']) ) {
     include('inc/header.php');
-    include('class/Home.php');
+    include('class/Paginas.php');
     ?>
     <ol class="breadcrumb">
         <li class="active">
@@ -20,11 +20,24 @@ if (1 == 1) {
                     <tr>
                         <td>
                             <div class="form-group">
-                                <h4>Teste</h4>
+                                <?php
+                                if ( isset($titulo_ativo) ) {
+                                    echo "<h4>{$titulo_ativo}</h4>";
+                                } else {
+                                    echo "<h4>Nenhum template selecionado!</h4>";
+                                }
+                                ?>
                             </div>
                             <div class="form-group">
-                                <a href="template.php" class="btn btn-block btn-warning"><< Anterior</a>
-                                <a href="bloco1.php" class="btn btn-block btn-primary">Próximo >></a>
+                                <?php
+                                if ( isset($_GET['id']) ) {
+                                    echo "<a href='template.php?id=1' class='btn btn-block btn-warning'><< Anterior</a>";
+                                    echo "<a href='bloco1.php?id=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                } else {
+                                    echo "<a href='template.php' class='btn btn-block btn-warning'><< Anterior</a>";
+                                    echo "<a href='bloco1.php' class='btn btn-block btn-primary'>Próximo >></a>";
+                                }
+                                ?>
                             </div>
                         </td>
                     </tr>

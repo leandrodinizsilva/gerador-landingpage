@@ -56,6 +56,12 @@ class DB {
         return $connection->query( "DELETE FROM {$table} WHERE {$condition};" );
     }
 
+    public function ultimoid( $connection, $table ) {
+        $sql = $connection->query( "SELECT `id` FROM {$table} ORDER BY `id` DESC LIMIT 0,1;" );
+        $obj = $this->objectdb( $sql );
+        return $obj->id;
+    }
+
     public function msg( $msg, $type )
     {
         return "<div class='text-center alert alert-{$type}'>
