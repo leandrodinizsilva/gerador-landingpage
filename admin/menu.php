@@ -10,7 +10,6 @@ if (1 == 1) {
             <i class='glyphicon glyphicon-menu-right'></i> <a href="template.php">Menu</a>
         </li>
     </ol>
-    <!-- <form method="post" enctype="multipart/form-data"> -->
     <div class="box col-md-4">
         <div class="panel panel-primary shadow">
             <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Template Selecionado</div>
@@ -29,6 +28,15 @@ if (1 == 1) {
                                 ?>
                             </div>
                             <div class="form-group">
+                            <?php
+                                if ( isset($_GET['retorno']) ) {
+                                    if ($_GET['retorno'] === '1') {
+                                        echo $DB->msg('Template adicionado com sucesso!', 'success');
+                                    } else {
+                                        echo $DB->msg('Falha na criação do template!', 'danger');
+                                    }
+                                }
+                                ?>
                                 <?php
                                 if ( isset($_GET['id']) ) {
                                     echo "<a href='template.php?id=1' class='btn btn-block btn-warning'><< Anterior</a>";
@@ -41,49 +49,51 @@ if (1 == 1) {
                             </div>
                         </td>
                     </tr>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-    <div class="box col-md-4">
-        <div class="panel panel-primary shadow">
-            <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Adicionar Menu</div>
-            <div class="padding-interno">
-               <table class="table" style="margin-bottom:0">
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Cor Selecionado</label>
-                                <input type="text" name="cor_selecionado" placeholder="#ffffff" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Título</label>
-                                <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label>Ícone</label><a class="mensagem-ajuda" href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
-                                <input type="text" name="icone" maxlength="20" class="form-control" placeholder="titulo-icone" />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <input type='submit' class='btn btn-block btn-success' name='adicionar' value='Adicionar' />
+</div>
+<div class="box col-md-4">
+    <div class="panel panel-primary shadow">
+        <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Adicionar Menu</div>
+        <div class="padding-interno">
+            <form method="post" enctype="multipart/form-data">
+                <table class="table" style="margin-bottom:0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Cor Selecionado</label>
+                                    <input type="text" name="cor_selecionado" placeholder="#ffffff" required value="<?php echo $cor_selecionado ?>" maxlength="20" class="form-control" />
+                                </div>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <input type="text" name="titulo" required value="<?php echo $titulo ?>" maxlength="20" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Ícone</label><a class="mensagem-ajuda" href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
+                                    <input type="text" name="icone" required value="<?php echo $icone ?>" maxlength="20" class="form-control" placeholder="titulo-icone" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <input type='submit' class='btn btn-block btn-success' name='salvar_menu' value='Salvar' />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
             </div>
         </div>
     </div>

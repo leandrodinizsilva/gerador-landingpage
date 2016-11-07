@@ -26,9 +26,6 @@ if ( isset($confirmar_home) && isset($template_home) ) {
 }
 
 /*******************TEMPLATE*******************/
-// echo "<pre>";
-// print_r($DB->ultimoid($db, "template"));die;
-// echo "</pre>";
 $titulo_template                = ( isset($_POST['titulo_template']) ) ? $_POST['titulo_template'] : null;
 $logotipo_template            = ( isset($_POST['logotipo_template']) ) ? $_POST['logotipo_template'] : null;
 $cor_primaria_template     = ( isset($_POST['cor_primaria_template']) ) ? $_POST['cor_primaria_template'] : null;
@@ -52,7 +49,6 @@ if ( isset( $_POST['salvar_template']) ) {
     } else {
         $_GET['retorno'] = 0;
     }
-
 }
 
 if ( isset( $_GET['id'] ) ) {
@@ -67,6 +63,30 @@ if ( isset( $_GET['id'] ) ) {
         $cor_primaria_template     = $obj->cor_primaria;
         $cor_secundaria_template = $obj->cor_secundaria;
         $cor_terciaria_template     = $obj->cor_terciaria;
+    }
+}
+
+/*******************MENU*******************/
+// echo "<pre>";
+// print_r($DB->ultimoid($db, "template"));die;
+// echo "</pre>";
+$cor_selecionado = ( isset($_POST['cor_selecionado']) ) ? $_POST['cor_selecionado'] : null;
+$titulo                 = ( isset($_POST['titulo']) ) ? $_POST['titulo'] : null;
+$icone                 = ( isset($_POST['icone']) ) ? $_POST['icone'] : null;
+
+if ( isset( $_POST['salvar_menu']) ) {
+    $return_insert = $DB->insertdb($db,"menu",
+        "`template_id`,`cor_selecionado`","
+        '{$_SESSION['id']}',
+        '{$cor_selecionado}'"
+    );
+    if ( $return_insert == true ) {
+        // $ultimo_id = $DB->ultimoid($db, "template");
+        // $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
+        // $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$ultimo_id}'" );
+        echo "<script>window.location='menu.php?retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
     }
 }
 
