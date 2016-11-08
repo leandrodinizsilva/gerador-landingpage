@@ -52,7 +52,7 @@ CREATE TABLE bloco4 (
 CREATE TABLE menu (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   template_id INTEGER UNSIGNED NOT NULL,
-  cor_selecionado VARCHAR(7) NOT NULL,
+  cor_selecionado VARCHAR(7) NULL,
   PRIMARY KEY(id),
   INDEX menu_FKIndex1(template_id)
 );

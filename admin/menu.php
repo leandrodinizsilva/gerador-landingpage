@@ -14,7 +14,7 @@ if (1 == 1) {
         <div class="panel panel-primary shadow">
             <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Template Selecionado</div>
             <div class="padding-interno">
-               <table class="table" style="margin-bottom:0">
+             <table class="table" style="margin-bottom:0">
                 <tbody>
                     <tr>
                         <td>
@@ -28,12 +28,12 @@ if (1 == 1) {
                                 ?>
                             </div>
                             <div class="form-group">
-                            <?php
+                                <?php
                                 if ( isset($_GET['retorno']) ) {
                                     if ($_GET['retorno'] === '1') {
-                                        echo $DB->msg('Template adicionado com sucesso!', 'success');
+                                        echo $DB->msg('Sucesso!', 'success');
                                     } else {
-                                        echo $DB->msg('Falha na criação do template!', 'danger');
+                                        echo $DB->msg('Falha!', 'danger');
                                     }
                                 }
                                 ?>
@@ -65,7 +65,8 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Cor Selecionado</label>
-                                    <input type="text" name="cor_selecionado" placeholder="#ffffff" required value="<?php echo $cor_selecionado ?>" maxlength="20" class="form-control" />
+                                    <input type="text" name="cor_selecionado" placeholder="#ffffff" value="<?php echo $cor_selecionado ?>" maxlength="20" class="form-control" />
+                                    <input type="hidden" name="id_menu" value="<?php echo $id_menu ?>" />
                                 </div>
                             </td>
                         </tr>
@@ -73,7 +74,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Título</label>
-                                    <input type="text" name="titulo" required value="<?php echo $titulo ?>" maxlength="20" class="form-control" />
+                                    <input type="text" name="titulo" value="<?php echo $titulo ?>" maxlength="20" class="form-control" />
                                 </div>
                             </td>
                         </tr>
@@ -81,7 +82,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Ícone</label><a class="mensagem-ajuda" href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
-                                    <input type="text" name="icone" required value="<?php echo $icone ?>" maxlength="20" class="form-control" placeholder="titulo-icone" />
+                                    <input type="text" name="icone" value="<?php echo $icone ?>" maxlength="20" class="form-control" placeholder="titulo-icone" />
                                 </div>
                             </td>
                         </tr>
@@ -101,19 +102,29 @@ if (1 == 1) {
         <div class="panel panel-primary shadow">
             <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Menus</div>
             <div class="padding-interno">
-               <table class="table" style="margin-bottom:0">
+             <table class="table" style="margin-bottom:0">
                 <tbody>
-                    <tr>
-                        <td>Teste</td>
-                        <td class="text-right">
-                            <a class='btn btn-warning btn-sm' href='#'>
-                                <i class='glyphicon glyphicon-pencil icon-white'></i>
-                            </a>
-                            <a class='btn btn-danger btn-sm' href='#' onclick='return confirm(\"Tem certeza?\");'>
-                                <i class='glyphicon glyphicon-trash icon-white'></i>
-                            </a>
-                        </td>
-                    </tr>
+                    <?php
+                    if ( isset($sql_menu_paginas) ) {
+                        foreach ($sql_menu_paginas as $key => $value) {
+                            echo "
+                                <tr>
+                                    <td>{$value['titulo']}</td>
+                                    <td class='text-right'>
+                                        <a class='btn btn-warning btn-sm' href='menu.php?id_menu={$value['id']}'>
+                                            <i class='glyphicon glyphicon-pencil icon-white'></i>
+                                        </a>
+                                        <a class='btn btn-danger btn-sm' href='#' onclick='return confirm(\"Tem certeza?\");'>
+                                            <i class='glyphicon glyphicon-trash icon-white'></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            ";
+                        }
+                    } else {
+                        echo "<td>Teste</td>";
+                    }
+                    ?>
                 </tbody>
             </table>
         </div>

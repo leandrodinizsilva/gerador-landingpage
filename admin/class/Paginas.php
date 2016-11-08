@@ -43,6 +43,8 @@ if ( isset( $_POST['salvar_template']) ) {
     );
     if ( $return_insert == true ) {
         $ultimo_id = $DB->ultimoid($db, "template");
+        /* cria registro em menu */
+        $DB->insertdb($db,"menu","`template_id`","'{$ultimo_id}'");
         $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
         $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$ultimo_id}'" );
         echo "<script>window.location='template.php?retorno=1'</script>";
@@ -56,6 +58,7 @@ if ( isset( $_GET['id'] ) ) {
         $db,"`id`,`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`",
         "`template`", "`id` = '{$_SESSION['id']}'"
     );
+
     if ( $sql_template->num_rows === 1 ) {
         $obj = $DB->objectdb( $sql_template );
         $titulo_template                = $obj->titulo;
@@ -67,28 +70,42 @@ if ( isset( $_GET['id'] ) ) {
 }
 
 /*******************MENU*******************/
-// echo "<pre>";
-// print_r($DB->ultimoid($db, "template"));die;
-// echo "</pre>";
 $cor_selecionado = ( isset($_POST['cor_selecionado']) ) ? $_POST['cor_selecionado'] : null;
 $titulo                 = ( isset($_POST['titulo']) ) ? $_POST['titulo'] : null;
 $icone                 = ( isset($_POST['icone']) ) ? $_POST['icone'] : null;
 
+$sql_menu = $DB->selectdb($db,"`id`","`menu`", "template_id='{$_SESSION['id']}'");
+$obj = $DB->objectdb( $sql_menu );
+$id_menu = $obj->id;
+
 if ( isset( $_POST['salvar_menu']) ) {
-    $return_insert = $DB->insertdb($db,"menu",
-        "`template_id`,`cor_selecionado`","
-        '{$_SESSION['id']}',
-        '{$cor_selecionado}'"
-    );
-    if ( $return_insert == true ) {
-        // $ultimo_id = $DB->ultimoid($db, "template");
-        // $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
-        // $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$ultimo_id}'" );
+    if ( $cor_selecionado != null ) {
+        $update_cor = $DB->updatedb(
+            $db, "`menu`",
+            "`cor_selecionado`='{$cor_selecionado}'",
+            "`template_id`='{$_SESSION['id']}'"
+        );
+    }
+
+    if ( $titulo != null ) {
+        $return_insert = $DB->insertdb($db,"menu_pagina",
+            "`menu_id`,`titulo`,`icon`",
+            "'{$id_menu}',
+            '{$titulo}',
+            '{$icone}'"
+        );
+    }
+    if ( isset($update_cor) || isset($return_insert) ) {
         echo "<script>window.location='menu.php?retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
     }
 }
+
+$sql_menu_paginas = $DB->selectdb($db,"`id`,`titulo`","`menu_pagina`", "menu_id='{$id_menu}'");
+// echo "<pre>";
+// print_r($sql_menu_paginas);die;
+// echo "</pre>";
 
 // if ( isset( $_POST['adicionar']) ) {
 //     if ( $_FILES['imagem']['error'] === 0 ) {
