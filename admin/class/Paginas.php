@@ -70,13 +70,14 @@ if ( isset( $_GET['id'] ) ) {
 }
 
 /*******************MENU*******************/
-$cor_selecionado = ( isset($_POST['cor_selecionado']) ) ? $_POST['cor_selecionado'] : null;
-$titulo                 = ( isset($_POST['titulo']) ) ? $_POST['titulo'] : null;
-$icone                 = ( isset($_POST['icone']) ) ? $_POST['icone'] : null;
+$cor_selecionado_menu = ( isset($_POST['cor_selecionado_menu']) ) ? $_POST['cor_selecionado_menu'] : null;
+$titulo_menu = ( isset($_POST['titulo_menu']) ) ? $_POST['titulo_menu'] : null;
+$icone_menu = ( isset($_POST['icone_menu']) ) ? $_POST['icone_menu'] : null;
 
-$sql_menu = $DB->selectdb($db,"`id`","`menu`", "template_id='{$_SESSION['id']}'");
+$sql_menu = $DB->selectdb($db,"`id`,`cor_selecionado`   ","`menu`", "template_id='{$_SESSION['id']}'");
 $obj = $DB->objectdb( $sql_menu );
 $id_menu = $obj->id;
+$cor_selecionado_menu = $obj->cor_selecionado;
 
 if ( isset( $_POST['salvar_menu']) ) {
     if ( $cor_selecionado != null ) {
@@ -103,9 +104,46 @@ if ( isset( $_POST['salvar_menu']) ) {
 }
 
 $sql_menu_paginas = $DB->selectdb($db,"`id`,`titulo`","`menu_pagina`", "menu_id='{$id_menu}'");
+
+if ( isset($_GET['id_menu']) ) {
+     $sql_menu = $DB->selectdb(
+        $db,"`id`,`titulo`,`icon`",
+        "`menu_pagina`", "`id` = '{$_GET['id_menu']}'"
+    );
+
+     if ( $sql_menu->num_rows > 0 ) {
+        $obj = $DB->objectdb( $sql_menu );
+        $titulo_menu = $obj->titulo;
+        $icone_menu = $obj->icon;
+    }
+
+    if ( isset($update_menu) ) {
+        $sql_update_menu = $DB->updatedb(
+            $db, "`menu_pagina`",
+            "`titulo`='{$_POST['titulo_menu']}',`icon`='{$_POST['icone_menu']}'",
+            "`id`='{$_GET['id_menu']}'"
+        );
+    }
 // echo "<pre>";
-// print_r($sql_menu_paginas);die;
+// print_r($sql_update_menu);die;
 // echo "</pre>";
+
+    if ( isset($sql_update_menu) ) {
+        echo "<script>window.location='menu.php?retorno=1'</script>";
+    }
+    // } elseif ( isset($_GET['id']) )  ) {
+    //     $_GET['retorno'] = 0;
+    // }
+}
+
+if ( isset( $_GET['excluir'] ) ) {
+    $excluir_menu = $DB->deletedb( $db, "`menu_pagina`", "`id`='{$_GET['excluir']}'" );
+    if ( isset( $excluir_menu ) && $excluir_menu == 1 ) {
+         echo "<script>window.location='menu.php?retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
+    }
+}
 
 // if ( isset( $_POST['adicionar']) ) {
 //     if ( $_FILES['imagem']['error'] === 0 ) {

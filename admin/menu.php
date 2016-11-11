@@ -65,7 +65,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Cor Selecionado</label>
-                                    <input type="text" name="cor_selecionado" placeholder="#ffffff" value="<?php echo $cor_selecionado ?>" maxlength="20" class="form-control" />
+                                    <input type="text" name="cor_selecionado_menu" placeholder="#ffffff" value="<?php echo $cor_selecionado_menu ?>" maxlength="20" class="form-control" />
                                     <input type="hidden" name="id_menu" value="<?php echo $id_menu ?>" />
                                 </div>
                             </td>
@@ -74,7 +74,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Título</label>
-                                    <input type="text" name="titulo" value="<?php echo $titulo ?>" maxlength="20" class="form-control" />
+                                    <input type="text" name="titulo_menu" value="<?php echo $titulo_menu ?>" maxlength="20" class="form-control" />
                                 </div>
                             </td>
                         </tr>
@@ -82,14 +82,20 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Ícone</label><a class="mensagem-ajuda" href="http://fontawesome.io/icons/" target="_blank">http://fontawesome.io/icons/</a>
-                                    <input type="text" name="icone" value="<?php echo $icone ?>" maxlength="20" class="form-control" placeholder="titulo-icone" />
+                                    <input type="text" name="icone_menu" value="<?php echo $icone_menu ?>" maxlength="20" class="form-control" placeholder="titulo-icone" />
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <input type='submit' class='btn btn-block btn-success' name='salvar_menu' value='Salvar' />
+                                    <?php
+                                        if ( isset( $_GET['id_menu'] ) ) {
+                                           echo "<input type='submit' class='btn btn-block btn-success' name='update_menu' value='Salvar' />" ;
+                                        } else {
+                                            echo "<input type='submit' class='btn btn-block btn-success' name='salvar_menu' value='Salvar' />";
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                         </tbody>
@@ -114,7 +120,7 @@ if (1 == 1) {
                                         <a class='btn btn-warning btn-sm' href='menu.php?id_menu={$value['id']}'>
                                             <i class='glyphicon glyphicon-pencil icon-white'></i>
                                         </a>
-                                        <a class='btn btn-danger btn-sm' href='#' onclick='return confirm(\"Tem certeza?\");'>
+                                        <a class='btn btn-danger btn-sm' href='menu.php?excluir={$value['id']}' onclick='return confirm(\"Tem certeza?\");'>
                                             <i class='glyphicon glyphicon-trash icon-white'></i>
                                         </a>
                                     </td>

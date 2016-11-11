@@ -46,7 +46,7 @@ class DB {
 
     public function updatedb( $connection, $table, $fields, $condition )
     {
-        // return "UPDATINSERT INTO {$table} ({$fields}) VALUES ({$values})E {$table} SET {$fields} WHERE {$condition};";;die;
+        // return "UPDATE {$table} SET {$fields} WHERE {$condition};";die;
         return $connection->query( "UPDATE {$table} SET {$fields} WHERE {$condition};" );
     }
 
