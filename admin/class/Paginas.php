@@ -77,23 +77,23 @@ $icone_menu = ( isset($_POST['icone_menu']) ) ? $_POST['icone_menu'] : null;
 $sql_menu = $DB->selectdb($db,"`id`,`cor_selecionado`   ","`menu`", "template_id='{$_SESSION['id']}'");
 $obj = $DB->objectdb( $sql_menu );
 $id_menu = $obj->id;
-$cor_selecionado_menu = $obj->cor_selecionado;
+$cor_selecionado = $obj->cor_selecionado;
+
+// if ( $cor_selecionado_menu != $cor_selecionado ) {
+//     echo "<pre>";
+//     print_r($cor_selecionado_menu);die;
+//     echo "</pre>";
+// }
+
 
 if ( isset( $_POST['salvar_menu']) ) {
-    if ( $cor_selecionado != null ) {
-        $update_cor = $DB->updatedb(
-            $db, "`menu`",
-            "`cor_selecionado`='{$cor_selecionado}'",
-            "`template_id`='{$_SESSION['id']}'"
-        );
-    }
 
-    if ( $titulo != null ) {
+    if ( $titulo_menu != null ) {
         $return_insert = $DB->insertdb($db,"menu_pagina",
             "`menu_id`,`titulo`,`icon`",
             "'{$id_menu}',
-            '{$titulo}',
-            '{$icone}'"
+            '{$titulo_menu}',
+            '{$icone_menu}'"
         );
     }
     if ( isset($update_cor) || isset($return_insert) ) {
@@ -117,23 +117,17 @@ if ( isset($_GET['id_menu']) ) {
         $icone_menu = $obj->icon;
     }
 
-    if ( isset($update_menu) ) {
+    if ( isset($_POST['update_menu']) ) {
         $sql_update_menu = $DB->updatedb(
             $db, "`menu_pagina`",
             "`titulo`='{$_POST['titulo_menu']}',`icon`='{$_POST['icone_menu']}'",
             "`id`='{$_GET['id_menu']}'"
         );
-    }
-// echo "<pre>";
-// print_r($sql_update_menu);die;
-// echo "</pre>";
 
-    if ( isset($sql_update_menu) ) {
-        echo "<script>window.location='menu.php?retorno=1'</script>";
+        if ( isset($sql_update_menu) ) {
+            echo "<script>window.location='menu.php?retorno=1'</script>";
+        }
     }
-    // } elseif ( isset($_GET['id']) )  ) {
-    //     $_GET['retorno'] = 0;
-    // }
 }
 
 if ( isset( $_GET['excluir'] ) ) {
@@ -144,6 +138,11 @@ if ( isset( $_GET['excluir'] ) ) {
         $_GET['retorno'] = 0;
     }
 }
+
+
+    // } elseif ( isset($_GET['id']) )  ) {
+    //     $_GET['retorno'] = 0;
+    // }
 
 // if ( isset( $_POST['adicionar']) ) {
 //     if ( $_FILES['imagem']['error'] === 0 ) {

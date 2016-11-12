@@ -103,7 +103,13 @@ if (1 == 1) {
                         <tr>
                             <td>
                                 <div class="form-group">
-                                    <input type='submit' class='btn btn-block btn-success' name='salvar_template' value='Salvar' />
+                                    <?php
+                                        if ( isset( $_GET['id'] ) ) {
+                                           echo "<input type='submit' class='btn btn-block btn-success' name='update_template' value='Salvar' />" ;
+                                        } else {
+                                            echo "<input type='submit' class='btn btn-block btn-success' name='salvar_template' value='Salvar' />";
+                                        }
+                                    ?>
                                 </td>
                             </tr>
                         </tbody>

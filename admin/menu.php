@@ -65,7 +65,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Cor Selecionado</label>
-                                    <input type="text" name="cor_selecionado_menu" placeholder="#ffffff" value="<?php echo $cor_selecionado_menu ?>" maxlength="20" class="form-control" />
+                                    <input type="text" name="cor_selecionado_menu" placeholder="#ffffff" value="<?php echo $cor_selecionado_menu ?>" maxlength="7" class="form-control" />
                                     <input type="hidden" name="id_menu" value="<?php echo $id_menu ?>" />
                                 </div>
                             </td>
@@ -111,7 +111,7 @@ if (1 == 1) {
              <table class="table" style="margin-bottom:0">
                 <tbody>
                     <?php
-                    if ( isset($sql_menu_paginas) ) {
+                    if ( isset($sql_menu_paginas) && $sql_menu_paginas->num_rows > 0 ) {//
                         foreach ($sql_menu_paginas as $key => $value) {
                             echo "
                                 <tr>
@@ -128,7 +128,7 @@ if (1 == 1) {
                             ";
                         }
                     } else {
-                        echo "<td>Teste</td>";
+                        echo "<td>Não existe menu cadastrado!</td>";
                     }
                     ?>
                 </tbody>
