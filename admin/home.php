@@ -26,7 +26,7 @@ if (1 == 1) {
                                         if ( isset($titulo_ativo) ) {
                                             echo "<h4>
                                                         {$titulo_ativo} &nbsp;
-                                                        <a class='btn btn-warning btn-md' href='template.php?id=1'>
+                                                        <a class='btn btn-warning btn-md' href='template.php?id_template=1'>
                                                             <i class='glyphicon glyphicon-pencil icon-white'></i>
                                                         </a>
                                                         <a class='btn btn-danger btn-md' href='#' onclick='return confirm(\"Tem certeza?\");'>

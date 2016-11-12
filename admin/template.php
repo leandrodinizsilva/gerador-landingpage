@@ -39,8 +39,8 @@ if (1 == 1) {
                                 ?>
                                 <a href="home.php" class="btn btn-block btn-warning"><< Anterior</a>
                                 <?php
-                                if ( isset($_GET['id']) ) {
-                                    echo "<a href='menu.php?id=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                if ( isset($_GET['id_template']) ) {
+                                    echo "<a href='menu.php?id_menu=1' class='btn btn-block btn-primary'>Próximo >></a>";
                                 } else {
                                     echo "<a href='menu.php' class='btn btn-block btn-primary'>Próximo >></a>";
                                 }
@@ -104,7 +104,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <?php
-                                        if ( isset( $_GET['id'] ) ) {
+                                        if ( isset( $_GET['id_template'] ) ) {
                                            echo "<input type='submit' class='btn btn-block btn-success' name='update_template' value='Salvar' />" ;
                                         } else {
                                             echo "<input type='submit' class='btn btn-block btn-success' name='salvar_template' value='Salvar' />";
