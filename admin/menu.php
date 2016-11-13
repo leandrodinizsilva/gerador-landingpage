@@ -38,9 +38,9 @@ if (1 == 1) {
                                 }
                                 ?>
                                 <?php
-                                if ( isset($_GET['id']) ) {
-                                    echo "<a href='template.php?id=1' class='btn btn-block btn-warning'><< Anterior</a>";
-                                    echo "<a href='bloco1.php?id=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                if ( isset($_GET['id_menu']) ) {
+                                    echo "<a href='template.php?id_template=1' class='btn btn-block btn-warning'><< Anterior</a>";
+                                    echo "<a href='bloco1.php?id_bloco1=1' class='btn btn-block btn-primary'>Próximo >></a>";
                                 } else {
                                     echo "<a href='template.php' class='btn btn-block btn-warning'><< Anterior</a>";
                                     echo "<a href='bloco1.php' class='btn btn-block btn-primary'>Próximo >></a>";
