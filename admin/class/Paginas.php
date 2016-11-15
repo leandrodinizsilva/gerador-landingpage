@@ -47,8 +47,13 @@ if ( isset( $_POST['salvar_template']) ) {
     );
     if ( $return_insert == true ) {
         $ultimo_id = $DB->ultimoid($db, "template");
-        /* cria registro em menu e seleciona o novo template como ativo */
+        /* cria registro em todas as tabelas e seleciona o novo template como ativo */
         $DB->insertdb($db,"menu","`template_id`","'{$ultimo_id}'");
+        $DB->insertdb($db,"bloco1","`template_id`","'{$ultimo_id}'");
+        $DB->insertdb($db,"bloco2","`template_id`","'{$ultimo_id}'");
+        $DB->insertdb($db,"bloco3","`template_id`","'{$ultimo_id}'");
+        $DB->insertdb($db,"bloco4","`template_id`","'{$ultimo_id}'");
+        $DB->insertdb($db,"rodape","`template_id`","'{$ultimo_id}'");
         $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
         $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$ultimo_id}'" );
         echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";

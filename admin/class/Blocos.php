@@ -23,8 +23,8 @@ $imagem_bloco1 = ( isset($_POST['imagem_bloco1']) ) ? $_POST['imagem_bloco1'] : 
 $texto_bloco1      = ( isset($_POST['texto_bloco1']) ) ? $_POST['texto_bloco1'] : null;
 
 /* adiciona novo template */
-if ( isset( $_POST['salvar_template']) ) {
-    $return_insert = $DB->insertdb($db,"template",
+if ( isset( $_POST['salvar_bloco1']) ) {
+    $return_insert = $DB->insertdb($db,"bloco1",
         "`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`","
         '{$titulo_template}',
         '{$logotipo_template}',

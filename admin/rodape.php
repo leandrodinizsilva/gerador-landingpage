@@ -3,7 +3,7 @@ session_start();
 if (1 == 1) {
 // if ( isset($_SESSION['user']) ) {
     include('inc/header.php');
-    include('class/Home.php');
+    include('class/Paginas.php');
     ?>
     <ol class="breadcrumb">
         <li class="active">

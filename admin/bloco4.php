@@ -3,7 +3,7 @@ session_start();
 if (1 == 1) {
 // if ( isset($_SESSION['user']) ) {
     include('inc/header.php');
-    include('class/Home.php');
+    include('class/Blocos.php');
     ?>
     <ol class="breadcrumb">
         <li class="active">
@@ -20,11 +20,33 @@ if (1 == 1) {
                     <tr>
                         <td>
                             <div class="form-group">
-                                <h4>Teste</h4>
+                                <?php
+                                if ( isset($titulo_ativo) ) {
+                                    echo "<h4>{$titulo_ativo}</h4>";
+                                } else {
+                                    echo "<h4>Nenhum template selecionado!</h4>";
+                                }
+                                ?>
                             </div>
                             <div class="form-group">
-                                <a href="bloco3.php" class="btn btn-block btn-warning"><< Anterior</a>
-                                <a href="rodape.php" class="btn btn-block btn-primary">Próximo >></a>
+                                <?php
+                                if ( isset($_GET['retorno']) ) {
+                                    if ($_GET['retorno'] === '1') {
+                                        echo $DB->msg('Sucesso!', 'success');
+                                    } else {
+                                        echo $DB->msg('Falha!', 'danger');
+                                    }
+                                }
+                                ?>
+                                <?php
+                                if ( isset($_GET['id_bloco4']) ) {
+                                    echo "<a href='bloco3.php?id_bloco3=1' class='btn btn-block btn-warning'><< Anterior</a>";
+                                    echo "<a href='rodape.php?id_rodape=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                } else {
+                                    echo "<a href='bloco3.php' class='btn btn-block btn-warning'><< Anterior</a>";
+                                    echo "<a href='rodape.php' class='btn btn-block btn-primary'>Próximo >></a>";
+                                }
+                                ?>
                             </div>
                         </td>
                     </tr>
@@ -43,7 +65,7 @@ if (1 == 1) {
                     <td>
                         <div class="form-group">
                             <label>Título</label>
-                            <input type="text" name="titulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            <input type="text" name="titulo_bloco4" value="<?php echo $titulo_bloco4 ?>" maxlength="20" class="form-control" />
                         </div>
                     </td>
                 </tr>
@@ -51,7 +73,7 @@ if (1 == 1) {
                     <td>
                         <div class="form-group">
                             <label>Subtítulo</label>
-                            <input type="text" name="subtitulo" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            <input type="text" name="subtitulo_bloco4" value="<?php echo $subtitulo_bloco4 ?>" maxlength="20" class="form-control" />
                         </div>
                     </td>
                 </tr>
@@ -59,7 +81,7 @@ if (1 == 1) {
                     <td>
                         <div class="form-group">
                             <label>Endereço</label>
-                            <input type="text" name="endereco" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            <input type="text" name="endereco_bloco4" value="<?php echo $endereco_bloco4 ?>" maxlength="20" class="form-control" />
                         </div>
                     </td>
                 </tr>
@@ -67,7 +89,7 @@ if (1 == 1) {
                     <td>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" name="email" value="<?php echo ( isset($titulo_e) ) ? $titulo_e : $titulo ?>" maxlength="20" class="form-control" />
+                            <input type="text" name="email_bloco4" value="<?php echo $email_bloco4 ?>" maxlength="20" class="form-control" />
                         </div>
                     </td>
                 </tr>
@@ -77,7 +99,7 @@ if (1 == 1) {
                             <label>Texto</label>
                             <textarea name="texto"></textarea>
                             <br />
-                            <input type='submit' class='btn btn-block btn-success' name='salvar' value='Salvar' />
+                            <input type='submit' class='btn btn-block btn-success' name='update_bloco4' value='Salvar' />
                         </div>
                     </td>
                 </tr>

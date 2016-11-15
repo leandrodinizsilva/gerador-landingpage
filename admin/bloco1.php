@@ -91,7 +91,7 @@ if (1 == 1) {
                             <label>Texto</label>
                             <textarea name="texto_bloco1"></textarea>
                             <br />
-                            <input type='submit' class='btn btn-block btn-success' name='salvar_bloco1' value='Salvar' />
+                            <input type='submit' class='btn btn-block btn-success' name='update_bloco1' value='Salvar' />
                         </div>
                     </td>
                 </tr>
