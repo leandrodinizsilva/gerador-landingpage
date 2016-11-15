@@ -24,18 +24,13 @@ $texto_bloco1      = ( isset($_POST['texto_bloco1']) ) ? $_POST['texto_bloco1'] 
 
 if ( isset( $_POST['update_bloco1']) ) {
     $sql_update_bloco1 = $DB->updatedb(
-            $db, "`bloco1`","
-            `titulo`='{$_POST['titulo_bloco1']}',
-            `subtitulo`='{$_POST['subtitulo_bloco1']}',
-            `texto`='{$_POST['texto_bloco1']}'",
-            "`template_id`='{$_SESSION['id']}'"
-        );
+        $db, "`bloco1`","
+        `titulo`='{$_POST['titulo_bloco1']}',
+        `subtitulo`='{$_POST['subtitulo_bloco1']}',
+        `texto`='{$_POST['texto_bloco1']}'",
+        "`template_id`='{$_SESSION['id']}'"
+    );
     if ( $sql_update_bloco1 == true ) {
-        // $ultimo_id = $DB->ultimoid($db, "template");
-        // /* cria registro em menu e seleciona o novo template como ativo */
-        // $DB->insertdb($db,"menu","`template_id`","'{$ultimo_id}'");
-        // $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
-        // $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$ultimo_id}'" );
         echo "<script>window.location='bloco1.php?id_bloco1=1&retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
@@ -57,7 +52,41 @@ if ( isset( $_GET['id_bloco1'] ) ) {
     }
 }
 
+/*******************BLOCO 2 *******************/
+$titulo_bloco2      = ( isset($_POST['titulo_bloco2']) ) ? $_POST['titulo_bloco2'] : null;
+$subtitulo_bloco2= ( isset($_POST['subtitulo_bloco2']) ) ? $_POST['subtitulo_bloco2'] : null;
+$imagem_bloco2 = ( isset($_POST['imagem_bloco2']) ) ? $_POST['imagem_bloco2'] : null;
+$texto_bloco2      = ( isset($_POST['texto_bloco2']) ) ? $_POST['texto_bloco2'] : null;
 
+if ( isset( $_POST['update_bloco2']) ) {
+    $sql_update_bloco2 = $DB->updatedb(
+        $db, "`bloco2`","
+        `titulo`='{$_POST['titulo_bloco2']}',
+        `subtitulo`='{$_POST['subtitulo_bloco2']}',
+        `texto`='{$_POST['texto_bloco2']}'",
+        "`template_id`='{$_SESSION['id']}'"
+    );
+    if ( $sql_update_bloco2 == true ) {
+        echo "<script>window.location='bloco2.php?id_bloco2=1&retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
+    }
+}
+
+/* exibe campos de template */
+if ( isset( $_GET['id_bloco2'] ) ) {
+    $sql_bloco2 = $DB->selectdb(
+        $db,"`id`,`titulo`,`subtitulo`,`texto`",
+        "`bloco2`", "`template_id` = '{$_SESSION['id']}'"
+    );
+
+    if ( $sql_bloco2->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_bloco2 );
+        $titulo_bloco2     = $obj->titulo;
+        $subtitulo_bloco2= $obj->subtitulo;
+        $texto_bloco2      = $obj->texto;
+    }
+}
 
         // echo "<pre>";
         // print_r($cor_selecionado_menu);die;
