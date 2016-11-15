@@ -120,6 +120,47 @@ if ( isset( $_GET['id_bloco3'] ) ) {
     }
 }
 
+/*******************BLOCO 4 *******************/
+$titulo_bloco4      = ( isset($_POST['titulo_bloco4']) ) ? $_POST['titulo_bloco4'] : null;
+$subtitulo_bloco4 = ( isset($_POST['subtitulo_bloco4']) ) ? $_POST['subtitulo_bloco4'] : null;
+$endereco_bloco4= ( isset($_POST['endereco_bloco4']) ) ? $_POST['endereco_bloco4'] : null;
+$email_bloco4      = ( isset($_POST['email_bloco4']) ) ? $_POST['email_bloco4'] : null;
+$texto_bloco4      = ( isset($_POST['texto_bloco4']) ) ? $_POST['texto_bloco4'] : null;
+
+if ( isset( $_POST['update_bloco4']) ) {
+    $sql_update_bloco4 = $DB->updatedb(
+        $db, "`bloco4`","
+        `titulo`='{$_POST['titulo_bloco4']}',
+        `subtitulo`='{$_POST['subtitulo_bloco4']}',
+        `endereco`='{$_POST['endereco_bloco4']}',
+        `email`='{$_POST['email_bloco4']}',
+        `texto`='{$_POST['texto_bloco4']}'",
+        "`template_id`='{$_SESSION['id']}'"
+    );
+    if ( $sql_update_bloco4 == true ) {
+        echo "<script>window.location='bloco4.php?id_bloco4=1&retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
+    }
+}
+
+/* exibe campos de template */
+if ( isset( $_GET['id_bloco4'] ) ) {
+    $sql_bloco4 = $DB->selectdb(
+        $db,"`id`,`titulo`,`subtitulo`,`endereco`,`email`,`texto`",
+        "`bloco4`", "`template_id` = '{$_SESSION['id']}'"
+    );
+
+    if ( $sql_bloco4->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_bloco4 );
+        $titulo_bloco4     = $obj->titulo;
+        $subtitulo_bloco4 = $obj->subtitulo;
+        $endereco_bloco4 = $obj->endereco;
+        $email_bloco4       = $obj->email;
+        $texto_bloco4       = $obj->texto;
+    }
+}
+
         // echo "<pre>";
         // print_r($cor_selecionado_menu);die;
         // echo "</pre>";

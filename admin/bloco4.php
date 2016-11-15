@@ -10,12 +10,11 @@ if (1 == 1) {
             <i class='glyphicon glyphicon-menu-right'></i> Bloco 4
         </li>
     </ol>
-    <!-- <form method="post" enctype="multipart/form-data"> -->
     <div class="box col-md-4">
         <div class="panel panel-primary shadow">
             <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Template Selecionado</div>
             <div class="padding-interno">
-             <table class="table" style="margin-bottom:0">
+               <table class="table" style="margin-bottom:0">
                 <tbody>
                     <tr>
                         <td>
@@ -59,52 +58,54 @@ if (1 == 1) {
     <div class="panel panel-primary shadow">
         <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 4</div>
         <div class="padding-interno">
-         <table class="table" style="margin-bottom:0">
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Título</label>
-                            <input type="text" name="titulo_bloco4" value="<?php echo $titulo_bloco4 ?>" maxlength="20" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Subtítulo</label>
-                            <input type="text" name="subtitulo_bloco4" value="<?php echo $subtitulo_bloco4 ?>" maxlength="20" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Endereço</label>
-                            <input type="text" name="endereco_bloco4" value="<?php echo $endereco_bloco4 ?>" maxlength="20" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" name="email_bloco4" value="<?php echo $email_bloco4 ?>" maxlength="20" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Texto</label>
-                            <textarea name="texto"></textarea>
-                            <br />
-                            <input type='submit' class='btn btn-block btn-success' name='update_bloco4' value='Salvar' />
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <form method="post" enctype="multipart/form-data">
+               <table class="table" style="margin-bottom:0">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Título</label>
+                                <input type="text" name="titulo_bloco4" value="<?php echo $titulo_bloco4 ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Subtítulo</label>
+                                <input type="text" name="subtitulo_bloco4" value="<?php echo $subtitulo_bloco4 ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Endereço</label>
+                                <input type="text" name="endereco_bloco4" value="<?php echo $endereco_bloco4 ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" name="email_bloco4" value="<?php echo $email_bloco4 ?>" maxlength="20" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <label>Texto</label>
+                                <textarea name="texto_bloco4"><?php echo $texto_bloco4 ?></textarea>
+                                <br />
+                                <input type='submit' class='btn btn-block btn-success' name='update_bloco4' value='Salvar' />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
     </div>
 </div>
 </div>
