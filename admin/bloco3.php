@@ -10,12 +10,11 @@ if (1 == 1) {
             <i class='glyphicon glyphicon-menu-right'></i> Bloco 3
         </li>
     </ol>
-    <!-- <form method="post" enctype="multipart/form-data"> -->
     <div class="box col-md-4">
         <div class="panel panel-primary shadow">
             <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Template Selecionado</div>
             <div class="padding-interno">
-             <table class="table" style="margin-bottom:0">
+               <table class="table" style="margin-bottom:0">
                 <tbody>
                     <tr>
                         <td>
@@ -59,54 +58,56 @@ if (1 == 1) {
     <div class="panel panel-primary shadow">
         <div class="panel-heading margin-header"><i class='glyphicon glyphicon-th-list'></i> &nbsp;Bloco 3</div>
         <div class="padding-interno">
-         <table class="table" style="margin-bottom:0">
-            <tbody>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Título</label>
-                            <input type="text" name="titulo_bloco3" value="<?php echo $titulo_bloco3 ?>" maxlength="20" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Subtítulo</label>
-                            <input type="text" name="subtitulo_bloco3" value="<?php echo $subtitulo_bloco3 ?>" maxlength="20" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Imagem 1</label>
-                            <input type="file" name="imagem1_bloco3" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Imagem 2</label>
-                            <input type="file" name="imagem2_bloco3" class="form-control" />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="form-group">
-                            <label>Imagem 3</label>
-                            <input type="file" name="imagem3_bloco3" class="form-control" />
-                            <br />
-                            <input type='submit' class='btn btn-block btn-success' name='update_bloco3' value='Salvar' />
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <form method="post" enctype="multipart/form-data">
+                <table class="table" style="margin-bottom:0">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <input type="text" name="titulo_bloco3" value="<?php echo $titulo_bloco3 ?>" maxlength="20" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Subtítulo</label>
+                                    <input type="text" name="subtitulo_bloco3" value="<?php echo $subtitulo_bloco3 ?>" maxlength="20" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Imagem 1</label>
+                                    <input type="file" name="imagem1_bloco3" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Imagem 2</label>
+                                    <input type="file" name="imagem2_bloco3" class="form-control" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    <label>Imagem 3</label>
+                                    <input type="file" name="imagem3_bloco3" class="form-control" />
+                                    <br />
+                                    <input type='submit' class='btn btn-block btn-success' name='update_bloco3' value='Salvar' />
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
     </div>
-</div>
 </div>
 </div>
 <?php

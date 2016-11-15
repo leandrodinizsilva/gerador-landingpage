@@ -88,6 +88,38 @@ if ( isset( $_GET['id_bloco2'] ) ) {
     }
 }
 
+/*******************BLOCO 3 *******************/
+$titulo_bloco3      = ( isset($_POST['titulo_bloco3']) ) ? $_POST['titulo_bloco3'] : null;
+$subtitulo_bloco3= ( isset($_POST['subtitulo_bloco3']) ) ? $_POST['subtitulo_bloco3'] : null;
+
+if ( isset( $_POST['update_bloco3']) ) {
+    $sql_update_bloco3 = $DB->updatedb(
+        $db, "`bloco3`","
+        `titulo`='{$_POST['titulo_bloco3']}',
+        `subtitulo`='{$_POST['subtitulo_bloco3']}'",
+        "`template_id`='{$_SESSION['id']}'"
+    );
+    if ( $sql_update_bloco3 == true ) {
+        echo "<script>window.location='bloco3.php?id_bloco3=1&retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
+    }
+}
+
+/* exibe campos de template */
+if ( isset( $_GET['id_bloco3'] ) ) {
+    $sql_bloco3 = $DB->selectdb(
+        $db,"`id`,`titulo`,`subtitulo`",
+        "`bloco3`", "`template_id` = '{$_SESSION['id']}'"
+    );
+
+    if ( $sql_bloco3->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_bloco3 );
+        $titulo_bloco3     = $obj->titulo;
+        $subtitulo_bloco3= $obj->subtitulo;
+    }
+}
+
         // echo "<pre>";
         // print_r($cor_selecionado_menu);die;
         // echo "</pre>";
