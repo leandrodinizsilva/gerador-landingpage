@@ -28,6 +28,24 @@ if ( isset($confirmar_home) && isset($template_home) ) {
     }
 }
 
+/* remove template */
+if ( isset( $_GET['excluir_template'] ) ) {
+    $excluir_template = $DB->deletedb( $db, "`template`", "`id`='{$_SESSION['id']}'" );
+    $DB->deletedb( $db, "`menu`", "`template_id`='{$_SESSION['id']}'" );
+    $DB->deletedb( $db, "`bloco1`", "`template_id`='{$_SESSION['id']}'" );
+    $DB->deletedb( $db, "`bloco2`", "`template_id`='{$_SESSION['id']}'" );
+    $DB->deletedb( $db, "`bloco3`", "`template_id`='{$_SESSION['id']}'" );
+    $DB->deletedb( $db, "`bloco4`", "`template_id`='{$_SESSION['id']}'" );
+    $DB->deletedb( $db, "`rodape`", "`template_id`='{$_SESSION['id']}'" );
+    // echo "<pre>";
+    // print_r($excluir_template);die;
+    if ( isset( $excluir_template ) && $excluir_template == 1 ) {
+         echo "<script>window.location='home.php?retorno=1'</script>";
+    } else {
+        $_GET['retorno'] = 0;
+    }
+}
+
 /*******************TEMPLATE*******************/
 $titulo_template                = ( isset($_POST['titulo_template']) ) ? $_POST['titulo_template'] : null;
 $logotipo_template            = ( isset($_POST['logotipo_template']) ) ? $_POST['logotipo_template'] : null;
@@ -104,9 +122,12 @@ $icone_menu = ( isset($_POST['icone_menu']) ) ? $_POST['icone_menu'] : null;
 
 /* carrega id de menu e cor selecionado */
 $sql_menu = $DB->selectdb($db,"`id`,`cor_selecionado`   ","`menu`", "template_id='{$_SESSION['id']}'");
-$obj = $DB->objectdb( $sql_menu );
-$id_menu = $obj->id;
-$cor_selecionado_menu = $obj->cor_selecionado;
+
+if ( $sql_menu->num_rows > 0 ) {
+    $obj = $DB->objectdb( $sql_menu );
+    $id_menu = $obj->id;
+    $cor_selecionado_menu = $obj->cor_selecionado;
+}
 
 /* altera o campo cor selecinado independente de submit update ou insert */
 if ( isset($_POST['salvar_menu']) || isset($_POST['update_menu']) ) {
@@ -138,7 +159,9 @@ if ( isset( $_POST['salvar_menu']) ) {
 }
 
 /* exibe lista de menus */
-$sql_menu_paginas = $DB->selectdb($db,"`id`,`titulo`","`menu_pagina`", "menu_id='{$id_menu}'");
+if ( isset($id_menu) ) {
+    $sql_menu_paginas = $DB->selectdb($db,"`id`,`titulo`","`menu_pagina`", "menu_id='{$id_menu}'");
+}
 
 /* lista os campos de menu */
 if ( isset($_GET['id_menu']) ) {

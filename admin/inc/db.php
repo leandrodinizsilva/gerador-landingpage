@@ -52,7 +52,7 @@ class DB {
 
     public function deletedb( $connection, $table, $condition )
     {
-        // return "DELETE FROM {$table} {$condition};";
+        // return "DELETE FROM {$table} WHERE {$condition};";
         return $connection->query( "DELETE FROM {$table} WHERE {$condition};" );
     }
 

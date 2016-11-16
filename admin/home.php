@@ -21,6 +21,15 @@ if (1 == 1) {
                             <tr>
                                 <td>
                                     <div class="form-group">
+                                        <?php
+                                        if ( isset($_GET['retorno']) ) {
+                                            if ($_GET['retorno'] === '1') {
+                                                echo $DB->msg('Template removido com sucesso!', 'success');
+                                            } else {
+                                                echo $DB->msg('Falha na remoção do template!', 'danger');
+                                            }
+                                        }
+                                        ?>
                                         <label>Template ativo</label>
                                         <?php
                                         if ( isset($titulo_ativo) ) {
@@ -29,7 +38,7 @@ if (1 == 1) {
                                                         <a class='btn btn-warning btn-md' href='template.php?id_template=1'>
                                                             <i class='glyphicon glyphicon-pencil icon-white'></i>
                                                         </a>
-                                                        <a class='btn btn-danger btn-md' href='#' onclick='return confirm(\"Tem certeza?\");'>
+                                                        <a class='btn btn-danger btn-md' href='home.php?excluir_template=1' onclick='return confirm(\"Tem certeza?\");'>
                                                             <i class='glyphicon glyphicon-trash icon-white'></i>
                                                         </a>
                                                       </h4>";
