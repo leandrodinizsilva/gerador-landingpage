@@ -37,12 +37,13 @@ if (1 == 1) {
                                     }
                                 }
                                 ?>
+                                <a href='bloco4.php?id_bloco4=1' class='btn btn-block btn-warning'><< Anterior</a>
                                 <?php
-                                if ( isset($_GET['id_bloco4']) ) {
-                                    echo "<a href='bloco4.php?id_bloco4=1' class='btn btn-block btn-warning'><< Anterior</a>";
-                                } else {
-                                    echo "<a href='bloco4.php' class='btn btn-block btn-warning'><< Anterior</a>";
-                                }
+                                // if ( isset($_GET['id_bloco4']) ) {
+                                //     echo "<a href='bloco4.php?id_bloco4=1' class='btn btn-block btn-warning'><< Anterior</a>";
+                                // } else {
+                                //     echo "<a href='bloco4.php' class='btn btn-block btn-warning'><< Anterior</a>";
+                                // }
                                 ?>
                             </div>
                         </td>

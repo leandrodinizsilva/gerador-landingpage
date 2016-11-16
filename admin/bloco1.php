@@ -37,14 +37,16 @@ if (1 == 1) {
                                     }
                                 }
                                 ?>
+                                <a href='menu.php?id_menu=1' class='btn btn-block btn-warning'><< Anterior</a>
+                                <a href='bloco2.php?id_bloco2=1' class='btn btn-block btn-primary'>Próximo >></a>
                                 <?php
-                                if ( isset($_GET['id_bloco1']) ) {
-                                    echo "<a href='menu.php?id_menu=1' class='btn btn-block btn-warning'><< Anterior</a>";
-                                    echo "<a href='bloco2.php?id_bloco2=1' class='btn btn-block btn-primary'>Próximo >></a>";
-                                } else {
-                                    echo "<a href='menu.php' class='btn btn-block btn-warning'><< Anterior</a>";
-                                    echo "<a href='bloco2.php' class='btn btn-block btn-primary'>Próximo >></a>";
-                                }
+                                // if ( isset($_GET['id_bloco1']) ) {
+                                //     echo "<a href='menu.php?id_menu=1' class='btn btn-block btn-warning'><< Anterior</a>";
+                                //     echo "<a href='bloco2.php?id_bloco2=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                // } else {
+                                //     echo "<a href='menu.php' class='btn btn-block btn-warning'><< Anterior</a>";
+                                //     echo "<a href='bloco2.php' class='btn btn-block btn-primary'>Próximo >></a>";
+                                // }
                                 ?>
                             </div>
                         </td>

@@ -38,12 +38,13 @@ if (1 == 1) {
                                 }
                                 ?>
                                 <a href="home.php" class="btn btn-block btn-warning"><< Anterior</a>
+                                <a href='menu.php?id_menu=1' class='btn btn-block btn-primary'>Próximo >></a>
                                 <?php
-                                if ( isset($_GET['id_template']) ) {
-                                    echo "<a href='menu.php?id_menu=1' class='btn btn-block btn-primary'>Próximo >></a>";
-                                } else {
-                                    echo "<a href='menu.php' class='btn btn-block btn-primary'>Próximo >></a>";
-                                }
+                                // if ( isset($_GET['id_template']) ) {
+                                //     echo "<a href='menu.php?id_menu=1' class='btn btn-block btn-primary'>Próximo >></a>";
+                                // } else {
+                                //     echo "<a href='menu.php' class='btn btn-block btn-primary'>Próximo >></a>";
+                                // }
                                 ?>
                             </div>
                         </td>
