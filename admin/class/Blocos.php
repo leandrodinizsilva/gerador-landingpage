@@ -33,6 +33,12 @@ if ( isset( $_POST['update_bloco1']) ) {
         "`template_id`='{$_SESSION['id']}'"
     );
     if ( $sql_update_bloco1 == true ) {
+        if ( $_FILES['imagem_bloco1']['error'] === 0 ) {
+            $arquivo = $DB->uploadfile( $_FILES['imagem_bloco1'],'bloco1' );
+            if ( $arquivo != false ) {
+                $update_img = $DB->updatedb( $db, "`bloco1`", "`imagem`='{$arquivo}'", "`template_id`='{$_SESSION['id']}'" );
+            }
+        }
         echo "<script>window.location='bloco1.php?id_bloco1=1&retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
