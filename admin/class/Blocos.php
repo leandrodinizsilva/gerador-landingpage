@@ -12,8 +12,10 @@ foreach ($sql_template_ativo as $key => $value) {
 $sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
 
 /* carrega titulo do template ativo */
-foreach ($sql_dados_template as $key => $value) {
-    $titulo_ativo = $value['titulo'];
+if ( $sql_dados_template->num_rows > 1 ) {
+    foreach ($sql_dados_template as $key => $value) {
+        $titulo_ativo = $value['titulo'];
+    }
 }
 
 /*******************BLOCO 1 *******************/

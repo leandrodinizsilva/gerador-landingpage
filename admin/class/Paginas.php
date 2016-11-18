@@ -4,16 +4,25 @@ extract($_POST);
 /*******************TEMPLATE ATIVO*******************/
 $sql_template_ativo = $DB->selectdb($db,"`id`,`titulo`","`template`", "ativo=1");
 
+// echo "<pre>";
+// print_r($sql_template_ativo);die;
+
 /* armazena template selecionado em sessão */
-foreach ($sql_template_ativo as $key => $value) {
-    $_SESSION['id'] = $value['id'];
+if ( $sql_template_ativo->num_rows > 0 ) {
+    foreach ($sql_template_ativo as $key => $value) {
+        $_SESSION['id'] = $value['id'];
+    }
 }
 
-$sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
+if ( isset($_SESSION['id']) ) {
+    $sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
+}
 
 /* carrega titulo do template ativo */
-foreach ($sql_dados_template as $key => $value) {
-    $titulo_ativo = $value['titulo'];
+if ( $sql_template_ativo->num_rows > 0 ) {
+    foreach ($sql_template_ativo as $key => $value) {
+        $titulo_ativo = $value['titulo'];
+    }
 }
 
 /*******************HOME*******************/
@@ -121,9 +130,11 @@ $titulo_menu = ( isset($_POST['titulo_menu']) ) ? $_POST['titulo_menu'] : null;
 $icone_menu = ( isset($_POST['icone_menu']) ) ? $_POST['icone_menu'] : null;
 
 /* carrega id de menu e cor selecionado */
-$sql_menu = $DB->selectdb($db,"`id`,`cor_selecionado`   ","`menu`", "template_id='{$_SESSION['id']}'");
+if ( isset($_SESSION['id']) ) {
+    $sql_menu = $DB->selectdb($db,"`id`,`cor_selecionado`   ","`menu`", "template_id='{$_SESSION['id']}'");
+}
 
-if ( $sql_menu->num_rows > 0 ) {
+if ( isset($sql_menu) && $sql_menu->num_rows > 0 ) {
     $obj = $DB->objectdb( $sql_menu );
     $id_menu = $obj->id;
     $cor_selecionado_menu = $obj->cor_selecionado;
