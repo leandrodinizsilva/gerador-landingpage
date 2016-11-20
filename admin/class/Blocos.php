@@ -12,7 +12,7 @@ foreach ($sql_template_ativo as $key => $value) {
 $sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
 
 /* carrega titulo do template ativo */
-if ( $sql_dados_template->num_rows > 1 ) {
+if ( $sql_dados_template->num_rows > 0 ) {
     foreach ($sql_dados_template as $key => $value) {
         $titulo_ativo = $value['titulo'];
     }
@@ -23,6 +23,22 @@ $titulo_bloco1      = ( isset($_POST['titulo_bloco1']) ) ? $_POST['titulo_bloco1
 $subtitulo_bloco1= ( isset($_POST['subtitulo_bloco1']) ) ? $_POST['subtitulo_bloco1'] : null;
 $imagem_bloco1 = ( isset($_POST['imagem_bloco1']) ) ? $_POST['imagem_bloco1'] : null;
 $texto_bloco1      = ( isset($_POST['texto_bloco1']) ) ? $_POST['texto_bloco1'] : null;
+
+/* exibe campos de template */
+if ( isset( $_GET['id_bloco1'] ) ) {
+    $sql_bloco1 = $DB->selectdb(
+        $db,"`id`,`titulo`,`subtitulo`,`texto`,`imagem`",
+        "`bloco1`", "`template_id` = '{$_SESSION['id']}'"
+    );
+
+    if ( $sql_bloco1->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_bloco1 );
+        $titulo_bloco1     = $obj->titulo;
+        $subtitulo_bloco1= $obj->subtitulo;
+        $texto_bloco1      = $obj->texto;
+        $imagem_bloco1  = $obj->imagem;
+    }
+}
 
 if ( isset( $_POST['update_bloco1']) ) {
     $sql_update_bloco1 = $DB->updatedb(
@@ -37,26 +53,14 @@ if ( isset( $_POST['update_bloco1']) ) {
             $arquivo = $DB->uploadfile( $_FILES['imagem_bloco1'],'bloco1' );
             if ( $arquivo != false ) {
                 $update_img = $DB->updatedb( $db, "`bloco1`", "`imagem`='{$arquivo}'", "`template_id`='{$_SESSION['id']}'" );
+                if ( $update_img == true ) {
+                    unlink("userfiles/bloco1/".$imagem_bloco1);
+                }
             }
         }
         echo "<script>window.location='bloco1.php?id_bloco1=1&retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
-    }
-}
-
-/* exibe campos de template */
-if ( isset( $_GET['id_bloco1'] ) ) {
-    $sql_bloco1 = $DB->selectdb(
-        $db,"`id`,`titulo`,`subtitulo`,`texto`",
-        "`bloco1`", "`template_id` = '{$_SESSION['id']}'"
-    );
-
-    if ( $sql_bloco1->num_rows === 1 ) {
-        $obj = $DB->objectdb( $sql_bloco1 );
-        $titulo_bloco1     = $obj->titulo;
-        $subtitulo_bloco1= $obj->subtitulo;
-        $texto_bloco1      = $obj->texto;
     }
 }
 

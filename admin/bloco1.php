@@ -70,6 +70,23 @@ if (1 == 1) {
                             </div>
                         </td>
                     </tr>
+                     <?php
+                        if ( isset( $imagem_bloco1 ) ){
+                        echo "
+                            <tr>
+                                <td>
+                                    <div class='box col-md-6'>
+                                        <div class='form-group'>
+                                            <br />
+                                            <a href='userfiles/bloco1/{$imagem_bloco1}' target='_blank'>
+                                                <img src='userfiles/bloco1/{$imagem_bloco1}' width='140' />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>";
+                        }
+                        ?>
                     <tr>
                         <td>
                             <div class="form-group">
