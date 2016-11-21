@@ -70,6 +70,22 @@ $subtitulo_bloco2= ( isset($_POST['subtitulo_bloco2']) ) ? $_POST['subtitulo_blo
 $imagem_bloco2 = ( isset($_POST['imagem_bloco2']) ) ? $_POST['imagem_bloco2'] : null;
 $texto_bloco2      = ( isset($_POST['texto_bloco2']) ) ? $_POST['texto_bloco2'] : null;
 
+/* exibe campos de template */
+if ( isset( $_GET['id_bloco2'] ) ) {
+    $sql_bloco2 = $DB->selectdb(
+        $db,"`id`,`titulo`,`subtitulo`,`texto`,`imagem`",
+        "`bloco2`", "`template_id` = '{$_SESSION['id']}'"
+    );
+
+    if ( $sql_bloco2->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_bloco2 );
+        $titulo_bloco2     = $obj->titulo;
+        $subtitulo_bloco2= $obj->subtitulo;
+        $texto_bloco2      = $obj->texto;
+        $imagem_bloco2  = $obj->imagem;
+    }
+}
+
 if ( isset( $_POST['update_bloco2']) ) {
     $sql_update_bloco2 = $DB->updatedb(
         $db, "`bloco2`","
@@ -79,24 +95,18 @@ if ( isset( $_POST['update_bloco2']) ) {
         "`template_id`='{$_SESSION['id']}'"
     );
     if ( $sql_update_bloco2 == true ) {
+        if ( $_FILES['imagem_bloco2']['error'] === 0 ) {
+            $arquivo = $DB->uploadfile( $_FILES['imagem_bloco2'],'bloco2' );
+            if ( $arquivo != false ) {
+                $update_img = $DB->updatedb( $db, "`bloco2`", "`imagem`='{$arquivo}'", "`template_id`='{$_SESSION['id']}'" );
+                if ( $update_img == true ) {
+                    unlink("userfiles/bloco2/".$imagem_bloco2);
+                }
+            }
+        }
         echo "<script>window.location='bloco2.php?id_bloco2=1&retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
-    }
-}
-
-/* exibe campos de template */
-if ( isset( $_GET['id_bloco2'] ) ) {
-    $sql_bloco2 = $DB->selectdb(
-        $db,"`id`,`titulo`,`subtitulo`,`texto`",
-        "`bloco2`", "`template_id` = '{$_SESSION['id']}'"
-    );
-
-    if ( $sql_bloco2->num_rows === 1 ) {
-        $obj = $DB->objectdb( $sql_bloco2 );
-        $titulo_bloco2     = $obj->titulo;
-        $subtitulo_bloco2= $obj->subtitulo;
-        $texto_bloco2      = $obj->texto;
     }
 }
 

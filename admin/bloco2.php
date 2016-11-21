@@ -39,15 +39,6 @@ if (1 == 1) {
                                 ?>
                                 <a href='bloco1.php?id_bloco1=1' class='btn btn-block btn-warning'><< Anterior</a>
                                 <a href='bloco3.php?id_bloco3=1' class='btn btn-block btn-primary'>Próximo >></a>
-                                <?php
-                                // if ( isset($_GET['id_bloco2']) ) {
-                                //     echo "<a href='bloco1.php?id_bloco1=1' class='btn btn-block btn-warning'><< Anterior</a>";
-                                //     echo "<a href='bloco3.php?id_bloco3=1' class='btn btn-block btn-primary'>Próximo >></a>";
-                                // } else {
-                                //     echo "<a href='bloco1.php' class='btn btn-block btn-warning'><< Anterior</a>";
-                                //     echo "<a href='bloco3.php' class='btn btn-block btn-primary'>Próximo >></a>";
-                                // }
-                                ?>
                             </div>
                         </td>
                     </tr>
@@ -87,11 +78,28 @@ if (1 == 1) {
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                        if ( isset( $imagem_bloco2 ) ){
+                        echo "
+                            <tr>
+                                <td>
+                                    <div class='box col-md-6'>
+                                        <div class='form-group'>
+                                            <br />
+                                            <a href='userfiles/bloco2/{$imagem_bloco2}' target='_blank'>
+                                                <img src='userfiles/bloco2/{$imagem_bloco2}' width='140' />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>";
+                        }
+                        ?>
                         <tr>
                             <td>
                                 <div class="form-group">
                                     <label>Imagem</label>
-                                    <input type="file" name="imagem" class="form-control" />
+                                    <input type="file" name="imagem_bloco2" class="form-control" />
                                     <br />
                                     <input type='submit' class='btn btn-block btn-success' name='update_bloco2' value='Salvar' />
                                 </div>
