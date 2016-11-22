@@ -39,15 +39,6 @@ if (1 == 1) {
                                 ?>
                                 <a href='bloco3.php?id_bloco3=1' class='btn btn-block btn-warning'><< Anterior</a>
                                 <a href='rodape.php?id_rodape=1' class='btn btn-block btn-primary'>Próximo >></a>
-                                <?php
-                                // if ( isset($_GET['id_bloco4']) ) {
-                                //     echo "<a href='bloco3.php?id_bloco3=1' class='btn btn-block btn-warning'><< Anterior</a>";
-                                //     echo "<a href='rodape.php?id_rodape=1' class='btn btn-block btn-primary'>Próximo >></a>";
-                                // } else {
-                                //     echo "<a href='bloco3.php' class='btn btn-block btn-warning'><< Anterior</a>";
-                                //     echo "<a href='rodape.php' class='btn btn-block btn-primary'>Próximo >></a>";
-                                // }
-                                ?>
                             </div>
                         </td>
                     </tr>
