@@ -58,6 +58,7 @@ if (1 == 1) {
                             <td>
                                 <div class="form-group">
                                     <label>Cor Selecionado</label>
+                                    <span style="color: #bbb">( site restrito a 4 menus )</span>
                                     <input type="text" name="cor_selecionado_menu" placeholder="#ffffff" value="<?php echo $cor_selecionado_menu ?>" maxlength="7" class="form-control" />
                                     <input type="hidden" name="id_menu" value="<?php echo $id_menu ?>" />
                                 </div>

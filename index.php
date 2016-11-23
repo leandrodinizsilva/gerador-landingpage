@@ -50,7 +50,7 @@ if ( $sql_template->num_rows === 1 ) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#home"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
+            <a class="navbar-brand" href="#home" style="color:<?php echo $cor_secundaria_template ?>"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar">
@@ -78,7 +78,7 @@ if ( $sql_template->num_rows === 1 ) {
                 <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="assets/img/home/garrafa.png" alt="">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInRight delay-0-5">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <p style="color:<?php echo $cor_secundaria_template ?>">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
                     <a href="#sobre" class="btn btn-primary btn-lg">Leia Mais</a>
                 </div>
 
@@ -95,11 +95,11 @@ if ( $sql_template->num_rows === 1 ) {
 <section id="sobre" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container">
         <div class="row">
-            <h1 class="title">Sobre Nós</h1>
-            <h2 class="subtitle">Um pouco sobre a nossa história</h2>
+            <h1 class="title" style="color:<?php echo $cor_primaria_template ?>">Sobre Nós</h1>
+            <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Um pouco sobre a nossa história</h2>
 
             <div class="col-md-8 col-sm-12">
-                <p>
+                <p style="color:<?php echo $cor_primaria_template ?>">
                     A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
                 </p>
             </div>
@@ -116,8 +116,8 @@ if ( $sql_template->num_rows === 1 ) {
 <section id="portfolio" style="background-color:<?php echo $cor_primaria_template ?>">
     <div class="container">
         <div class="row">
-            <h1 class="title">Vinhos</h1>
-            <h2 class="subtitle">Uvas de excelente qualidade</h2>
+            <h1 class="title" style="color:<?php echo $cor_secundaria_template ?>">Vinhos</h1>
+            <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Uvas de excelente qualidade</h2>
 
 
 
@@ -164,9 +164,9 @@ if ( $sql_template->num_rows === 1 ) {
 <section id="contact" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container text-center">
         <div class="row">
-            <h1 class="title">Contato</h1>
+            <h1 class="title" style="color:<?php echo $cor_primaria_template ?>">Contato</h1>
 
-            <h2 class="subtitle">Fale conosco através dos campos abaixo</h2>
+            <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Fale conosco através dos campos abaixo</h2>
 
 
             <form role="form" class="contact-form" method="post">
