@@ -114,6 +114,23 @@ if ( isset( $_POST['update_bloco2']) ) {
 $titulo_bloco3      = ( isset($_POST['titulo_bloco3']) ) ? $_POST['titulo_bloco3'] : null;
 $subtitulo_bloco3= ( isset($_POST['subtitulo_bloco3']) ) ? $_POST['subtitulo_bloco3'] : null;
 
+/* exibe campos de template */
+if ( isset( $_GET['id_bloco3'] ) ) {
+    $sql_bloco3 = $DB->selectdb(
+        $db,"`id`,`titulo`,`subtitulo`,`imagem1`,`imagem2`,`imagem3`",
+        "`bloco3`", "`template_id` = '{$_SESSION['id']}'"
+    );
+
+    if ( $sql_bloco3->num_rows === 1 ) {
+        $obj = $DB->objectdb( $sql_bloco3 );
+        $titulo_bloco3       = $obj->titulo;
+        $subtitulo_bloco3  = $obj->subtitulo;
+        $imagem1_bloco3 = $obj->imagem1;
+        $imagem2_bloco3 = $obj->imagem2;
+        $imagem3_bloco3 = $obj->imagem3;
+    }
+}
+
 if ( isset( $_POST['update_bloco3']) ) {
     $sql_update_bloco3 = $DB->updatedb(
         $db, "`bloco3`","
@@ -122,23 +139,36 @@ if ( isset( $_POST['update_bloco3']) ) {
         "`template_id`='{$_SESSION['id']}'"
     );
     if ( $sql_update_bloco3 == true ) {
+        if ( $_FILES['imagem1_bloco3']['error'] === 0 ) {
+            $arquivo1 = $DB->uploadfile( $_FILES['imagem1_bloco3'],'bloco3' );
+            if ( $arquivo1 != false ) {
+                $update_img1 = $DB->updatedb( $db, "`bloco3`", "`imagem1`='{$arquivo1}'", "`template_id`='{$_SESSION['id']}'" );
+                if ( $update_img1 == true ) {
+                    unlink("userfiles/bloco3/".$imagem1_bloco3);
+                }
+            }
+        }
+        if ( $_FILES['imagem2_bloco3']['error'] === 0 ) {
+            $arquivo2 = $DB->uploadfile( $_FILES['imagem2_bloco3'],'bloco3' );
+            if ( $arquivo2 != false ) {
+                $update_img2 = $DB->updatedb( $db, "`bloco3`", "`imagem2`='{$arquivo2}'", "`template_id`='{$_SESSION['id']}'" );
+                if ( $update_img2 == true ) {
+                    unlink("userfiles/bloco3/".$imagem2_bloco3);
+                }
+            }
+        }
+        if ( $_FILES['imagem3_bloco3']['error'] === 0 ) {
+            $arquivo3 = $DB->uploadfile( $_FILES['imagem3_bloco3'],'bloco3' );
+            if ( $arquivo3 != false ) {
+                $update_img3 = $DB->updatedb( $db, "`bloco3`", "`imagem3`='{$arquivo3}'", "`template_id`='{$_SESSION['id']}'" );
+                if ( $update_img3 == true ) {
+                    unlink("userfiles/bloco3/".$imagem3_bloco3);
+                }
+            }
+        }
         echo "<script>window.location='bloco3.php?id_bloco3=1&retorno=1'</script>";
     } else {
         $_GET['retorno'] = 0;
-    }
-}
-
-/* exibe campos de template */
-if ( isset( $_GET['id_bloco3'] ) ) {
-    $sql_bloco3 = $DB->selectdb(
-        $db,"`id`,`titulo`,`subtitulo`",
-        "`bloco3`", "`template_id` = '{$_SESSION['id']}'"
-    );
-
-    if ( $sql_bloco3->num_rows === 1 ) {
-        $obj = $DB->objectdb( $sql_bloco3 );
-        $titulo_bloco3     = $obj->titulo;
-        $subtitulo_bloco3= $obj->subtitulo;
     }
 }
 

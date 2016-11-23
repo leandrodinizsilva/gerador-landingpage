@@ -25,16 +25,11 @@ CREATE TABLE bloco3 (
   template_id INTEGER UNSIGNED NOT NULL,
   titulo VARCHAR(50) NULL,
   subtitulo VARCHAR(100) NULL,
+  imagem1 VARCHAR(100) NULL,
+  imagem2 VARCHAR(100) NULL,
+  imagem3 VARCHAR(100) NULL,
   PRIMARY KEY(id),
   INDEX bloco3_FKIndex1(template_id)
-);
-
-CREATE TABLE bloco3_imagem (
-  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  bloco3_id INTEGER UNSIGNED NOT NULL,
-  url VARCHAR(100) NOT NULL,
-  PRIMARY KEY(id),
-  INDEX bloco3_imagem_FKIndex1(bloco3_id)
 );
 
 CREATE TABLE bloco4 (
@@ -61,7 +56,7 @@ CREATE TABLE menu_pagina (
   id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   menu_id INTEGER UNSIGNED NOT NULL,
   titulo VARCHAR(20) NOT NULL,
-  icon VARCHAR(20) NOT NULL,
+  icon VARCHAR(20) NULL,
   PRIMARY KEY(id),
   INDEX menu_pagina_FKIndex1(menu_id)
 );

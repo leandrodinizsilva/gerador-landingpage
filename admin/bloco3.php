@@ -72,6 +72,45 @@ if (1 == 1) {
                         </tr>
                         <tr>
                             <td>
+                                <?php
+                                if ( isset( $imagem1_bloco3 ) ){
+                                echo "
+                                    <div class='box col-md-4'>
+                                        <div class='form-group'>
+                                            <br />
+                                            <a href='userfiles/bloco3/{$imagem1_bloco3}' target='_blank'>
+                                                <img src='userfiles/bloco3/{$imagem1_bloco3}' width='140' />
+                                            </a>
+                                        </div>
+                                    </div>";
+                                }
+                                if ( isset( $imagem2_bloco3 ) ){
+                                echo "
+                                    <div class='box col-md-4'>
+                                        <div class='form-group'>
+                                            <br />
+                                            <a href='userfiles/bloco3/{$imagem2_bloco3}' target='_blank'>
+                                                <img src='userfiles/bloco3/{$imagem2_bloco3}' width='140' />
+                                            </a>
+                                        </div>
+                                    </div>";
+                                }
+                                if ( isset( $imagem3_bloco3 ) ){
+                                echo "
+                                    <div class='box col-md-4'>
+                                        <div class='form-group'>
+                                            <br />
+                                            <a href='userfiles/bloco3/{$imagem3_bloco3}' target='_blank'>
+                                                <img src='userfiles/bloco3/{$imagem3_bloco3}' width='140' />
+                                            </a>
+                                        </div>
+                                    </div>";
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <div class="form-group">
                                     <label>Imagem 1</label>
                                     <input type="file" name="imagem1_bloco3" class="form-control" />
