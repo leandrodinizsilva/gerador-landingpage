@@ -95,7 +95,7 @@ a:hover {
   background: #333;
 }
 .affix.navbar-default {
-  background: rgba(61, 4, 75, 0.8);
+  /*background: rgba(61, 4, 75, 0.8);*/
 }
 #home {
   background: #670393;

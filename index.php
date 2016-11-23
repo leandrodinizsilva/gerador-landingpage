@@ -193,23 +193,23 @@ if ( $sql_template->num_rows === 1 ) {
                             <textarea rows="7" class="form-control" placeholder="Message" name="message"></textarea>
                         </div>
                     </div>
-                    <button type="submit" id="submit" class="btn btn-lg btn-common">Enviar</button><div id="success" style="color:#34495e;"></div>
+                    <button type="submit" id="submit" class="btn btn-lg btn-common" style="background-color:<?php echo $cor_primaria_template ?>">Enviar</button><div id="success" style="color:#34495e;"></div>
 
                 </div>
             </form>
 
             <div class="col-md-6 wow fadeInRight">
                 <div class="social-links">
-                    <a class="social" href="#" target="_blank"><i class="fa fa-facebook fa-2x"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
+                    <a class="social" href="#" target="_blank" ><i class="fa fa-facebook fa-2x" style="background-color:<?php echo $cor_primaria_template ?>"></i></a>
+                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x" style="background-color:<?php echo $cor_primaria_template ?>"></i></a>
+                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x" style="background-color:<?php echo $cor_primaria_template ?>"></i></a>
                 </div>
                 <div class="contact-info">
-                    <p><i class="fa fa-map-marker"></i> São Roque - São Paulo - Brasil</p>
-                    <p><i class="fa fa-envelope"></i> contato@adegaboavista.com.br</p>
+                    <p style="color:<?php echo $cor_primaria_template ?>"><i class="fa fa-map-marker" style="color:<?php echo $cor_primaria_template ?>"></i> São Roque - São Paulo - Brasil</p>
+                    <p style="color:<?php echo $cor_primaria_template ?>"><i class="fa fa-envelope" style="color:<?php echo $cor_primaria_template ?>"></i> contato@adegaboavista.com.br</p>
                 </div>
 
-                <p>
+                <p style="color:<?php echo $cor_primaria_template ?>">
                     A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit.<br>
                 </p>
 
@@ -218,32 +218,21 @@ if ( $sql_template->num_rows === 1 ) {
         </div>
     </div>
 </section>
-
-<!-- Conatct Section End-->
-
-
 <div id="copyright">
     <div class="container">
-        <div class="col-md-10"><p>© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://google.com">Consultoria Cs</a></p></div>
+        <div class="col-md-10"><p style="color:<?php echo $cor_primaria_template ?>">© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://github.com/jmessiass" style="color:<?php echo $cor_primaria_template ?>">Jmessi@s</a></p></div>
         <div class="col-md-2">
-            <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x"></i></a></span>
+            <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x" style="border-color:<?php echo $cor_primaria_template ?>"></i></a></span>
         </div>
     </div>
 </div>
-<!-- Copyright Section End-->
-
 <!-- Bootstrap JS -->
 <script src="assets/js/bootstrap.min.js"></script>
-
 <!-- Smooth Scroll -->
 <!-- Smooth Scroll -->
 <script src="assets/js/smooth-scroll.js"></script>
 <script src="assets/js/lightbox.min.js"></script>
-
 <!-- All JS plugin Triggers -->
 <script src="assets/js/main.js"></script>
-
-
-
 </body>
 </html>
