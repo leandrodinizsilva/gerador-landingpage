@@ -1,75 +1,79 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Adega Boa Vista</title>
-        <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+<?php
+require ("admin/inc/db.php");
+$DB = new DB;
+$db = $DB->connect();
 
-        <!-- Main Style -->
-        <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+$sql_template = $DB->selectdb(
+        $db,"`id`,`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`",
+        "`template`", "`ativo`=1"
+    );
 
-        <!-- Responsive Style -->
-        <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-
-        <!--Icon Fonts-->
-        <link rel="stylesheet" media="screen" href="assets/fonts/font-awesome/font-awesome.min.css" />
-
-
-        <!-- Extras -->
-        <link rel="stylesheet" type="text/css" href="assets/extras/animate.css">
-        <link rel="stylesheet" type="text/css" href="assets/extras/lightbox.css">
-
-
-        <!-- jQuery Load -->
-        <script src="assets/js/jquery-min.js"></script>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-          <![endif]-->
-
-      </head>
-
-      <body data-spy="scroll" data-offset="20" data-target="#navbar">
-        <!-- Nav Menu Section -->
-        <div class="logo-menu">
-            <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
-              <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header col-md-3">
-                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#home"><i class="fa fa-glass"></i> Boa Vista</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="navbar">
-                <ul class="nav navbar-nav col-md-8 pull-right">
-                    <li class="active"><a href="#home"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#sobre"><i class="fa fa-info"></i> Sobre</a></li>
-                    <li><a href="#portfolio"><i class="fa fa-flask"></i> Vinhos</a></li>
-                    <li><a href="#contact"><i class="fa fa-envelope"></i> Contato</a></li>
-                </ul>
-            </div>
+if ( $sql_template->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_template );
+    $titulo_template                = $obj->titulo;
+    $logotipo_template            = $obj->logotipo;
+    $cor_primaria_template     = $obj->cor_primaria;
+    $cor_secundaria_template = $obj->cor_secundaria;
+    $cor_terciaria_template     = $obj->cor_terciaria;
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo $titulo_template ?></title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+    <!-- Responsive Style -->
+    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+    <!--Icon Fonts-->
+    <link rel="stylesheet" media="screen" href="assets/fonts/font-awesome/font-awesome.min.css" />
+    <!-- Extras -->
+    <link rel="stylesheet" type="text/css" href="assets/extras/animate.css">
+    <link rel="stylesheet" type="text/css" href="assets/extras/lightbox.css">
+    <!-- jQuery Load -->
+    <script src="assets/js/jquery-min.js"></script>
+</head>
+<body data-spy="scroll" data-offset="20" data-target="#navbar">
+    <!-- Nav Menu Section -->
+    <div class="logo-menu">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" data-spy="affix" data-offset-top="50">
+          <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header col-md-3">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#home"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
         </div>
-    </nav>
+
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav col-md-8 pull-right">
+                <li class="active"><a href="#home"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#sobre"><i class="fa fa-info"></i> Sobre</a></li>
+                <li><a href="#portfolio"><i class="fa fa-flask"></i> Vinhos</a></li>
+                <li><a href="#contact"><i class="fa fa-envelope"></i> Contato</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 </div>
 <!-- Nav Menu Section End -->
 
 <!-- home Area Section -->
 
-<section id="home">
+<section id="home" style="background-color:<?php echo $cor_primaria_template ?>">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="title">Adega Boa Vista</h1>
-                <h2 class="subtitle">Trazendo o melhor do vinho para você</h2>
+                <h1 class="title" style="color:<?php echo $cor_secundaria_template ?>">Adega Boa Vista</h1>
+                <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Trazendo o melhor do vinho para você</h2>
 
                 <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="assets/img/home/garrafa.png" alt="">
 
@@ -88,7 +92,7 @@
 
 <!-- sobre Section -->
 
-<section id="sobre">
+<section id="sobre" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container">
         <div class="row">
             <h1 class="title">Sobre Nós</h1>
@@ -109,7 +113,7 @@
 
 <!-- Portfolio Section -->
 
-<section id="portfolio">
+<section id="portfolio" style="background-color:<?php echo $cor_primaria_template ?>">
     <div class="container">
         <div class="row">
             <h1 class="title">Vinhos</h1>
@@ -157,7 +161,7 @@
 <!-- Portfolio Section End -->
 
 <!-- Conatct Section -->
-<section id="contact">
+<section id="contact" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container text-center">
         <div class="row">
             <h1 class="title">Contato</h1>
