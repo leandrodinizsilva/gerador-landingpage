@@ -34,6 +34,14 @@ if ( $sql_template->num_rows === 1 ) {
     <!-- Extras -->
     <link rel="stylesheet" type="text/css" href="assets/extras/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/extras/lightbox.css">
+    <style>
+        .background-first {
+            background-color: <?php echo $cor_primaria_template ?> !important;
+        }
+        .text-first {
+            color: <?php echo $cor_primaria_template ?> !important;
+        }
+    </style>
     <!-- jQuery Load -->
     <script src="assets/js/jquery-min.js"></script>
 </head>
@@ -68,7 +76,7 @@ if ( $sql_template->num_rows === 1 ) {
 
 <!-- home Area Section -->
 
-<section id="home" style="background-color:<?php echo $cor_primaria_template ?>">
+<section id="home" class="background-first">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -95,11 +103,11 @@ if ( $sql_template->num_rows === 1 ) {
 <section id="sobre" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container">
         <div class="row">
-            <h1 class="title" style="color:<?php echo $cor_primaria_template ?>">Sobre Nós</h1>
+            <h1 class="title text-first">Sobre Nós</h1>
             <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Um pouco sobre a nossa história</h2>
 
             <div class="col-md-8 col-sm-12">
-                <p style="color:<?php echo $cor_primaria_template ?>">
+                <p class="text-first">
                     A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
                 </p>
             </div>
