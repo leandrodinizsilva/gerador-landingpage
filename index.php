@@ -35,12 +35,13 @@ if ( $sql_template->num_rows === 1 ) {
     <link rel="stylesheet" type="text/css" href="assets/extras/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/extras/lightbox.css">
     <style>
-        .background-first {
-            background-color: <?php echo $cor_primaria_template ?> !important;
-        }
-        .text-first {
-            color: <?php echo $cor_primaria_template ?> !important;
-        }
+        .background-first {background-color: <?php echo $cor_primaria_template ?> !important;}
+        .text-first {color: <?php echo $cor_primaria_template ?> !important;}
+        .background-second {background-color: <?php echo $cor_secundaria_template ?> !important;}
+        .text-second {color: <?php echo $cor_secundaria_template ?> !important;}
+        .background-third {background-color: <?php echo $cor_terciaria_template ?> !important;}
+        .text-third {color: <?php echo $cor_terciaria_template ?> !important;}
+        .border-first {border-color: <?php echo $cor_primaria_template ?> !important;}
     </style>
     <!-- jQuery Load -->
     <script src="assets/js/jquery-min.js"></script>
@@ -58,7 +59,7 @@ if ( $sql_template->num_rows === 1 ) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#home" style="color:<?php echo $cor_secundaria_template ?>"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
+            <a class="navbar-brand text-second" href="#home"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar">
@@ -80,13 +81,13 @@ if ( $sql_template->num_rows === 1 ) {
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="title" style="color:<?php echo $cor_secundaria_template ?>">Adega Boa Vista</h1>
-                <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Trazendo o melhor do vinho para você</h2>
+                <h1 class="title text-second">Adega Boa Vista</h1>
+                <h2 class="subtitle text-third">Trazendo o melhor do vinho para você</h2>
 
                 <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="assets/img/home/garrafa.png" alt="">
 
                 <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInRight delay-0-5">
-                    <p style="color:<?php echo $cor_secundaria_template ?>">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                    <p class="text-second">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
                     <a href="#sobre" class="btn btn-primary btn-lg">Leia Mais</a>
                 </div>
 
@@ -104,7 +105,7 @@ if ( $sql_template->num_rows === 1 ) {
     <div class="container">
         <div class="row">
             <h1 class="title text-first">Sobre Nós</h1>
-            <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Um pouco sobre a nossa história</h2>
+            <h2 class="subtitle text-third">Um pouco sobre a nossa história</h2>
 
             <div class="col-md-8 col-sm-12">
                 <p class="text-first">
@@ -121,11 +122,11 @@ if ( $sql_template->num_rows === 1 ) {
 
 <!-- Portfolio Section -->
 
-<section id="portfolio" style="background-color:<?php echo $cor_primaria_template ?>">
+<section id="portfolio" class="background-first">
     <div class="container">
         <div class="row">
-            <h1 class="title" style="color:<?php echo $cor_secundaria_template ?>">Vinhos</h1>
-            <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Uvas de excelente qualidade</h2>
+            <h1 class="title text-second">Vinhos</h1>
+            <h2 class="subtitle text-third">Uvas de excelente qualidade</h2>
 
 
 
@@ -167,16 +168,12 @@ if ( $sql_template->num_rows === 1 ) {
     </div>
 </section>
 <!-- Portfolio Section End -->
-
 <!-- Conatct Section -->
 <section id="contact" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container text-center">
         <div class="row">
-            <h1 class="title" style="color:<?php echo $cor_primaria_template ?>">Contato</h1>
-
-            <h2 class="subtitle" style="color:<?php echo $cor_terciaria_template ?>">Fale conosco através dos campos abaixo</h2>
-
-
+            <h1 class="title text-first">Contato</h1>
+            <h2 class="subtitle text-third">Fale conosco através dos campos abaixo</h2>
             <form role="form" class="contact-form" method="post">
                 <div class="col-md-6 wow fadeInLeft" data-wow-delay=".5s">
                     <div class="form-group">
@@ -194,43 +191,37 @@ if ( $sql_template->num_rows === 1 ) {
                             <input type="text" class="form-control requiredField" placeholder="Subject" name="subject">
                         </div>
                     </div>
-
                     <div class="form-group">
-
                         <div class="controls">
                             <textarea rows="7" class="form-control" placeholder="Message" name="message"></textarea>
                         </div>
                     </div>
-                    <button type="submit" id="submit" class="btn btn-lg btn-common" style="background-color:<?php echo $cor_primaria_template ?>">Enviar</button><div id="success" style="color:#34495e;"></div>
-
+                    <button type="submit" id="submit" class="btn btn-lg btn-common background-first">Enviar</button>
+                    <div id="success" style="color:#34495e;"></div>
                 </div>
             </form>
-
             <div class="col-md-6 wow fadeInRight">
                 <div class="social-links">
-                    <a class="social" href="#" target="_blank" ><i class="fa fa-facebook fa-2x" style="background-color:<?php echo $cor_primaria_template ?>"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x" style="background-color:<?php echo $cor_primaria_template ?>"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x" style="background-color:<?php echo $cor_primaria_template ?>"></i></a>
+                    <a class="social" href="#" target="_blank" ><i class="fa fa-facebook fa-2x background-first"></i></a>
+                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x background-first"></i></a>
+                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x background-first"></i></a>
                 </div>
                 <div class="contact-info">
-                    <p style="color:<?php echo $cor_primaria_template ?>"><i class="fa fa-map-marker" style="color:<?php echo $cor_primaria_template ?>"></i> São Roque - São Paulo - Brasil</p>
-                    <p style="color:<?php echo $cor_primaria_template ?>"><i class="fa fa-envelope" style="color:<?php echo $cor_primaria_template ?>"></i> contato@adegaboavista.com.br</p>
+                    <p class="text-first"><i class="fa fa-map-marker" class="text-first"></i> São Roque - São Paulo - Brasil</p>
+                    <p class="text-first"><i class="fa fa-envelope" class="text-first"></i> contato@adegaboavista.com.br</p>
                 </div>
-
-                <p style="color:<?php echo $cor_primaria_template ?>">
+                <p class="text-first">
                     A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit.<br>
                 </p>
-
             </div>
-
         </div>
     </div>
 </section>
 <div id="copyright">
     <div class="container">
-        <div class="col-md-10"><p style="color:<?php echo $cor_primaria_template ?>">© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://github.com/jmessiass" style="color:<?php echo $cor_primaria_template ?>">Jmessi@s</a></p></div>
+        <div class="col-md-10"><p class="text-first">© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://github.com/jmessiass" class="text-first">Jmessi@s</a></p></div>
         <div class="col-md-2">
-            <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x" style="border-color:<?php echo $cor_primaria_template ?>"></i></a></span>
+            <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x"></i></a></span>
         </div>
     </div>
 </div>
