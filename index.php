@@ -217,7 +217,7 @@ if ( $sql_template->num_rows === 1 ) {
         </div>
     </div>
 </section>
-<div id="copyright">
+<div id="copyright" class="background-second">
     <div class="container">
         <div class="col-md-10"><p class="text-first">© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://github.com/jmessiass" class="text-first">Jmessi@s</a></p></div>
         <div class="col-md-2">
