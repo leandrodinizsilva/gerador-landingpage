@@ -8,13 +8,25 @@ $sql_template = $DB->selectdb(
         "`template`", "`ativo`=1"
     );
 
+
 if ( $sql_template->num_rows === 1 ) {
     $obj = $DB->objectdb( $sql_template );
+    $id_template                     = $obj->id;
     $titulo_template                = $obj->titulo;
     $logotipo_template            = $obj->logotipo;
     $cor_primaria_template     = $obj->cor_primaria;
     $cor_secundaria_template = $obj->cor_secundaria;
     $cor_terciaria_template     = $obj->cor_terciaria;
+}
+
+$sql_menu = $DB->selectdb(
+        $db,"`id`,`cor_selecionado`",
+        "`menu`", "`template_id`={$id_template}"
+    );
+
+if ( $sql_menu->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_menu );
+    $cor_selecionado = $obj->cor_selecionado;
 }
 ?>
 <!DOCTYPE html>
@@ -35,6 +47,7 @@ if ( $sql_template->num_rows === 1 ) {
     <link rel="stylesheet" type="text/css" href="assets/extras/animate.css">
     <link rel="stylesheet" type="text/css" href="assets/extras/lightbox.css">
     <style>
+        .active-first:active {background-color: <?php echo $cor_selecionado ?> !important;}
         .background-first {background-color: <?php echo $cor_primaria_template ?> !important;}
         .text-first {color: <?php echo $cor_primaria_template ?> !important;}
         .background-second {background-color: <?php echo $cor_secundaria_template ?> !important;}
@@ -42,6 +55,14 @@ if ( $sql_template->num_rows === 1 ) {
         .background-third {background-color: <?php echo $cor_terciaria_template ?> !important;}
         .text-third {color: <?php echo $cor_terciaria_template ?> !important;}
         .border-first {border-color: <?php echo $cor_primaria_template ?> !important;}
+        .back-top {border: 2px solid <?php echo $cor_primaria_template ?> !important;}
+        .back-top:hover {background-color: <?php echo $cor_terciaria_template ?> !important;}
+        .navbar-default .navbar-nav > .active,
+        .navbar-default .navbar-nav li:hover {
+          background: <?php echo $cor_selecionado ?>;
+          padding-bottom: 5px;
+          color: #fff;
+        }
     </style>
     <!-- jQuery Load -->
     <script src="assets/js/jquery-min.js"></script>
@@ -59,15 +80,15 @@ if ( $sql_template->num_rows === 1 ) {
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand text-second" href="#home"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
+            <a class="navbar-brand text-third" href="#home"><i class="fa <?php echo $logotipo_template ?>"></i> <?php echo $titulo_template ?></a>
         </div>
 
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav col-md-8 pull-right">
-                <li class="active"><a href="#home"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#sobre"><i class="fa fa-info"></i> Sobre</a></li>
-                <li><a href="#portfolio"><i class="fa fa-flask"></i> Vinhos</a></li>
-                <li><a href="#contact"><i class="fa fa-envelope"></i> Contato</a></li>
+                <li class="active"><a href="#home" class="text-third"><i class="fa fa-home"></i> Home</a></li>
+                <li><a href="#sobre" class="text-third"><i class="fa fa-info"></i> Sobre</a></li>
+                <li><a href="#portfolio" class="text-third"><i class="fa fa-flask"></i> Vinhos</a></li>
+                <li><a href="#contact" class="text-third"><i class="fa fa-envelope"></i> Contato</a></li>
             </ul>
         </div>
     </div>
@@ -88,7 +109,7 @@ if ( $sql_template->num_rows === 1 ) {
 
                 <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInRight delay-0-5">
                     <p class="text-second">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    <a href="#sobre" class="btn btn-primary btn-lg">Leia Mais</a>
+                    <a href="#sobre" class="btn btn-primary btn-lg text-third background-second">Leia Mais</a>
                 </div>
 
             </div>
@@ -196,15 +217,15 @@ if ( $sql_template->num_rows === 1 ) {
                             <textarea rows="7" class="form-control" placeholder="Message" name="message"></textarea>
                         </div>
                     </div>
-                    <button type="submit" id="submit" class="btn btn-lg btn-common background-first">Enviar</button>
+                    <button type="submit" id="submit" class="btn btn-lg btn-common background-first text-third">Enviar</button>
                     <div id="success" style="color:#34495e;"></div>
                 </div>
             </form>
             <div class="col-md-6 wow fadeInRight">
                 <div class="social-links">
-                    <a class="social" href="#" target="_blank" ><i class="fa fa-facebook fa-2x background-first"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x background-first"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x background-first"></i></a>
+                    <a class="social" href="#" target="_blank" ><i class="fa fa-facebook fa-2x background-first text-third"></i></a>
+                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x background-first text-third"></i></a>
+                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x background-first text-third"></i></a>
                 </div>
                 <div class="contact-info">
                     <p class="text-first"><i class="fa fa-map-marker" class="text-first"></i> São Roque - São Paulo - Brasil</p>
@@ -221,7 +242,7 @@ if ( $sql_template->num_rows === 1 ) {
     <div class="container">
         <div class="col-md-10"><p class="text-first">© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://github.com/jmessiass" class="text-first">Jmessi@s</a></p></div>
         <div class="col-md-2">
-            <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x"></i></a></span>
+            <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x text-first back-top"></i></a></span>
         </div>
     </div>
 </div>
