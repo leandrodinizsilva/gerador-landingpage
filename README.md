@@ -1,4 +1,4 @@
-# modelo-landingpage
+# gerador-landingpage
 
 Projeto de uma landingpage com área de admin, para a criação e seleção de templates.
 
