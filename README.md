@@ -1,8 +1,15 @@
-# modelo-landingpage
+# gerador-landingpage
 
-Projeto de uma landingpage com área de admin, para a criação e seleção de templates.
+Gerador de landingpage através de área administrativa.
 
-Visual clean e moderno, sendo todo o projeto responsivel.
+Crie templates de acordo com sua necessidade. 
 
-O sistema será capaz de criar e editar todo o conteúdo do site, tornando mais fácil a vida do usuário na hora da criação de uma landingpage simples.
+Segue as opções que estão disponíveis para customizar:
 
+- Seleção de cores primária, secundária e terciária através de código hexadecimal, onde essas cores são distribuida por todo o site, tendo o controle de todo o visual.
+
+- Criação do menu, podendo adicionar textos e imagens em fontawesome.
+
+- Criação de todo o conteúdo do site entre textos e imagens, divídos em 4 blocos.
+
+Foi utilizado um tema no site em bootstrap, fazendo com que todo o site fique resposivo.
