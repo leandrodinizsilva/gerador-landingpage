@@ -103,7 +103,7 @@ if ( $sql_menu->num_rows === 1 ) {
         <div class="row">
             <div class="col-md-12">
                 <h1 class="title text-second">Adega Boa Vista</h1>
-                <h2 class="subtitle text-third">Trazendo o melhor do vinho para você</h2>
+                <h2 class="subtitle text-third">Trazendo o melhor do vinho para</h2>
 
                 <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="assets/img/home/garrafa.png" alt="">
 
