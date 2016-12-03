@@ -31,7 +31,7 @@ if ( $sql_menu->num_rows === 1 ) {
 
 $sql_menu_pagina = $DB->selectdb(
         $db,"`titulo`,`icon`",
-        "`menu_pagina`", "`menu_id`={$id_template}"
+        "`menu_pagina`", "`menu_id`={$id_template} LIMIT 0,4"
     );
 
 ?>
@@ -94,16 +94,16 @@ $sql_menu_pagina = $DB->selectdb(
                 <?php
                 if ( $sql_menu_pagina->num_rows > 0 ) {
                     foreach ($sql_menu_pagina as $key => $value) {
-                        // echo "<pre>";
-                        // print_r($key);
-                        // echo "</pre>";
-
+                        $menu_slug[$key] = strtolower($value['titulo']);
                         if ($key == 0) {
-                            echo "<li><a href='#".strtolower($value['titulo'])."' class='text-third'><i class='fa fa-home'></i> {$value['titulo']}</a></li>";
+                            echo "<li><a href='#{$menu_slug[$key]}' class='text-third'><i class='fa {$value['icon']}'></i> {$value['titulo']}</a></li>";
                         } else {
-                            echo "<li><a href='#".strtolower($value['titulo'])."' class='text-third'><i class='fa fa-home'></i> {$value['titulo']}</a></li>";
+                            echo "<li><a href='#".strtolower($value['titulo'])."' class='text-third'><i class='fa {$value['icon']}'></i> {$value['titulo']}</a></li>";
                         }
                      }
+                    // echo "<pre>";
+                    // print_r($menu_slug);die;
+                    // echo "</pre>";
                     // $titulo_menu = $obj->titulo;
                     // $icon_menu = $obj->icon;
                 }
@@ -120,7 +120,7 @@ $sql_menu_pagina = $DB->selectdb(
 
 <!-- home Area Section -->
 
-<section id="home" class="background-first">
+<section id="<?php echo $menu_slug[0] ?>" class="background-first">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -144,7 +144,7 @@ $sql_menu_pagina = $DB->selectdb(
 
 <!-- sobre Section -->
 
-<section id="sobre" style="background-color:<?php echo $cor_secundaria_template ?>">
+<section id="<?php echo $menu_slug[1] ?>" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container">
         <div class="row">
             <h1 class="title text-first">Sobre Nós</h1>
@@ -165,7 +165,7 @@ $sql_menu_pagina = $DB->selectdb(
 
 <!-- Portfolio Section -->
 
-<section id="portfolio" class="background-first">
+<section id="<?php echo $menu_slug[2] ?>" class="background-first">
     <div class="container">
         <div class="row">
             <h1 class="title text-second">Vinhos</h1>
@@ -212,7 +212,7 @@ $sql_menu_pagina = $DB->selectdb(
 </section>
 <!-- Portfolio Section End -->
 <!-- Conatct Section -->
-<section id="contact" style="background-color:<?php echo $cor_secundaria_template ?>">
+<section id="<?php echo $menu_slug[3] ?>" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container text-center">
         <div class="row">
             <h1 class="title text-first">Contato</h1>
