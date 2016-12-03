@@ -8,7 +8,6 @@ $sql_template = $DB->selectdb(
         "`template`", "`ativo`=1"
     );
 
-
 if ( $sql_template->num_rows === 1 ) {
     $obj = $DB->objectdb( $sql_template );
     $id_template                     = $obj->id;
@@ -26,8 +25,15 @@ $sql_menu = $DB->selectdb(
 
 if ( $sql_menu->num_rows === 1 ) {
     $obj = $DB->objectdb( $sql_menu );
+    $id_menu = $obj->id;
     $cor_selecionado = $obj->cor_selecionado;
 }
+
+$sql_menu_pagina = $DB->selectdb(
+        $db,"`titulo`,`icon`",
+        "`menu_pagina`", "`menu_id`={$id_template}"
+    );
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,10 +91,26 @@ if ( $sql_menu->num_rows === 1 ) {
 
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav col-md-8 pull-right">
-                <li class="active"><a href="#home" class="text-third"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="#sobre" class="text-third"><i class="fa fa-info"></i> Sobre</a></li>
+                <?php
+                if ( $sql_menu_pagina->num_rows > 0 ) {
+                    $obj = $DB->objectdb( $sql_menu_pagina );
+
+                    foreach ($obj as $key => $value) {
+                        echo "<per>";
+                        print_r($obj);die;
+                        if ($key == 1) {
+                            echo "<li class='active'><a href='#home' class='text-third'><i class='fa fa-home'></i> Home</a></li>";
+                        } else {
+                            echo "<li><a href='#home' class='text-third'><i class='fa fa-home'></i> Home</a></li>";
+                        }
+                     }
+                    // $titulo_menu = $obj->titulo;
+                    // $icon_menu = $obj->icon;
+                }
+                ?>
+                <!-- <li><a href="#sobre" class="text-third"><i class="fa fa-info"></i> Sobre</a></li>
                 <li><a href="#portfolio" class="text-third"><i class="fa fa-flask"></i> Vinhos</a></li>
-                <li><a href="#contact" class="text-third"><i class="fa fa-envelope"></i> Contato</a></li>
+                <li><a href="#contact" class="text-third"><i class="fa fa-envelope"></i> Contato</a></li> -->
             </ul>
         </div>
     </div>
