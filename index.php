@@ -93,15 +93,15 @@ $sql_menu_pagina = $DB->selectdb(
             <ul class="nav navbar-nav col-md-8 pull-right">
                 <?php
                 if ( $sql_menu_pagina->num_rows > 0 ) {
-                    $obj = $DB->objectdb( $sql_menu_pagina );
+                    foreach ($sql_menu_pagina as $key => $value) {
+                        // echo "<pre>";
+                        // print_r($key);
+                        // echo "</pre>";
 
-                    foreach ($obj as $key => $value) {
-                        echo "<per>";
-                        print_r($obj);die;
-                        if ($key == 1) {
-                            echo "<li class='active'><a href='#home' class='text-third'><i class='fa fa-home'></i> Home</a></li>";
+                        if ($key == 0) {
+                            echo "<li><a href='#".strtolower($value['titulo'])."' class='text-third'><i class='fa fa-home'></i> {$value['titulo']}</a></li>";
                         } else {
-                            echo "<li><a href='#home' class='text-third'><i class='fa fa-home'></i> Home</a></li>";
+                            echo "<li><a href='#".strtolower($value['titulo'])."' class='text-third'><i class='fa fa-home'></i> {$value['titulo']}</a></li>";
                         }
                      }
                     // $titulo_menu = $obj->titulo;
