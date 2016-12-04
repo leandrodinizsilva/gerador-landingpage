@@ -60,6 +60,20 @@ if ( $sql_bloco2->num_rows === 1 ) {
     $imagem_bloco2  = $obj->imagem;
 }
 
+$sql_bloco3 = $DB->selectdb(
+        $db,"`titulo`,`subtitulo`,`imagem1`,`imagem2`,`imagem3`",
+        "`bloco3`", "`template_id`={$id_template}"
+    );
+
+if ( $sql_bloco3->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_bloco3 );
+    $titulo_bloco3      = $obj->titulo;
+    $subtitulo_bloco3 = $obj->subtitulo;
+    $imagem1_bloco3  = $obj->imagem1;
+    $imagem2_bloco3  = $obj->imagem2;
+    $imagem3_bloco3  = $obj->imagem3;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,17 +193,17 @@ if ( $sql_bloco2->num_rows === 1 ) {
 <section id="<?php echo $menu_slug[2] ?>" class="background-first">
     <div class="container">
         <div class="row">
-            <h1 class="title text-second">Vinhos</h1>
-            <h2 class="subtitle text-third">Uvas de excelente qualidade</h2>
+            <h1 class="title text-second"><?php echo $titulo_bloco3 ?></h1>
+            <h2 class="subtitle text-third"><?php echo $subtitulo_bloco3 ?></h2>
 
 
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="portfolio-item wow fadeInLeft" data-wow-delay=".5s">
-                    <a href="#"><img src="assets/img/portfolio/img1.jpg" alt=""></a>
+                    <a href="#"><img src="admin/userfiles/bloco3/<?php echo $imagem1_bloco3 ?>" alt=""></a>
                     <div class="overlay">
                         <div class="icons">
-                            <a data-lightbox="image1" href="assets/img/portfolio/img1.jpg" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
+                            <a data-lightbox="image1" href="admin/userfiles/bloco3/<?php echo $imagem1_bloco3 ?>" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
                         </div>
                     </div>
                 </div>
@@ -198,10 +212,10 @@ if ( $sql_bloco2->num_rows === 1 ) {
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="portfolio-item wow fadeInLeft" data-wow-delay=".7s">
-                    <a href="#"><img src="assets/img/portfolio/img2.jpg" alt=""></a>
+                    <a href="#"><img src="admin/userfiles/bloco3/<?php echo $imagem2_bloco3 ?>" alt=""></a>
                     <div class="overlay">
                         <div class="icons">
-                            <a data-lightbox="image1" href="assets/img/portfolio/img2.jpg" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
+                            <a data-lightbox="image1" href="admin/userfiles/bloco3/<?php echo $imagem2_bloco3 ?>" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
                         </div>
                     </div>
                 </div>
@@ -209,10 +223,10 @@ if ( $sql_bloco2->num_rows === 1 ) {
 
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="portfolio-item wow fadeInLeft" data-wow-delay=".9s">
-                    <a href="#"><img src="assets/img/portfolio/img3.jpg" alt=""></a>
+                    <a href="#"><img src="admin/userfiles/bloco3/<?php echo $imagem3_bloco3 ?>" alt=""></a>
                     <div class="overlay">
                         <div class="icons">
-                            <a data-lightbox="image1" href="assets/img/portfolio/img3.jpg" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
+                            <a data-lightbox="image1" href="admin/userfiles/bloco3/<?php echo $imagem3_bloco3 ?>" class="preview"><i class="fa fa-search-plus fa-4x"></i></a>
                         </div>
                     </div>
                 </div>
