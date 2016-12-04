@@ -47,6 +47,19 @@ if ( $sql_bloco1->num_rows === 1 ) {
     $texto_bloco1 = substr($obj->texto, 3, -4);
 }
 
+$sql_bloco2 = $DB->selectdb(
+        $db,"`titulo`,`subtitulo`,`imagem`,`texto`",
+        "`bloco2`", "`template_id`={$id_template}"
+    );
+
+if ( $sql_bloco2->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_bloco2 );
+    $titulo_bloco2      = $obj->titulo;
+    $subtitulo_bloco2 = $obj->subtitulo;
+    $texto_bloco2 = substr($obj->texto, 3, -4);
+    $imagem_bloco2  = $obj->imagem;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +144,7 @@ if ( $sql_bloco1->num_rows === 1 ) {
             <div class="col-md-12">
                 <h1 class="title text-second"><?php echo $titulo_bloco1 ?></h1>
                 <h2 class="subtitle text-third"><?php echo $subtitulo_bloco1?></h2>
-                <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="admin/userfiles/bloco1/<?php echo $imagem_bloco1?>" alt="">
+                <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="admin/userfiles/bloco1/<?php echo $imagem_bloco1 ?>" alt="">
                 <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInRight delay-0-5">
                     <p class="text-second"><?php echo $texto_bloco1 ?></p>
                     <a href="#<?php echo $menu_slug[1] ?>" class="btn btn-primary btn-lg text-third background-second">Leia Mais</a>
@@ -148,17 +161,14 @@ if ( $sql_bloco1->num_rows === 1 ) {
 <section id="<?php echo $menu_slug[1] ?>" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container">
         <div class="row">
-            <h1 class="title text-first">Sobre Nós</h1>
-            <h2 class="subtitle text-third">Um pouco sobre a nossa história</h2>
-
+            <h1 class="title text-first"><?php echo $titulo_bloco2 ?></h1>
+            <h2 class="subtitle text-third"><?php echo $subtitulo_bloco2 ?></h2>
             <div class="col-md-8 col-sm-12">
                 <p class="text-first">
-                    A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
+                    <?php echo $texto_bloco2 ?>
                 </p>
             </div>
-
-            <img class="col-md-4 col-md-4 col-sm-12 col-xs-12" src="assets/img/sobre/graph.png" alt="">
-
+            <img class="col-md-4 col-md-4 col-sm-12 col-xs-12" src="admin/userfiles/bloco2/<?php echo $imagem_bloco2 ?>" alt="">
         </div>
     </div>
 </section>
@@ -245,11 +255,6 @@ if ( $sql_bloco1->num_rows === 1 ) {
                 </div>
             </form>
             <div class="col-md-6 wow fadeInRight">
-                <div class="social-links">
-                    <a class="social" href="#" target="_blank" ><i class="fa fa-facebook fa-2x background-first text-third"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-twitter fa-2x background-first text-third"></i></a>
-                    <a class="social" href="#" target="_blank"><i class="fa fa-linkedin fa-2x background-first text-third"></i></a>
-                </div>
                 <div class="contact-info">
                     <p class="text-first"><i class="fa fa-map-marker" class="text-first"></i> São Roque - São Paulo - Brasil</p>
                     <p class="text-first"><i class="fa fa-envelope" class="text-first"></i> contato@adegaboavista.com.br</p>
