@@ -34,6 +34,19 @@ $sql_menu_pagina = $DB->selectdb(
         "`menu_pagina`", "`menu_id`={$id_template} LIMIT 0,4"
     );
 
+$sql_bloco1 = $DB->selectdb(
+        $db,"`titulo`,`subtitulo`,`imagem`,`texto`",
+        "`bloco1`", "`template_id`={$id_template}"
+    );
+
+if ( $sql_bloco1->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_bloco1 );
+    $titulo_bloco1      = $obj->titulo;
+    $subtitulo_bloco1 = $obj->subtitulo;
+    $imagem_bloco1  = $obj->imagem;
+    $texto_bloco1       = $obj->texto;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,13 +117,8 @@ $sql_menu_pagina = $DB->selectdb(
                     // echo "<pre>";
                     // print_r($menu_slug);die;
                     // echo "</pre>";
-                    // $titulo_menu = $obj->titulo;
-                    // $icon_menu = $obj->icon;
                 }
                 ?>
-                <!-- <li><a href="#sobre" class="text-third"><i class="fa fa-info"></i> Sobre</a></li>
-                <li><a href="#portfolio" class="text-third"><i class="fa fa-flask"></i> Vinhos</a></li>
-                <li><a href="#contact" class="text-third"><i class="fa fa-envelope"></i> Contato</a></li> -->
             </ul>
         </div>
     </div>
@@ -124,8 +132,8 @@ $sql_menu_pagina = $DB->selectdb(
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="title text-second">Adega Boa Vista</h1>
-                <h2 class="subtitle text-third">Trazendo o melhor do vinho para</h2>
+                <h1 class="title text-second"><?php echo $titulo_bloco1 ?></h1>
+                <h2 class="subtitle text-third"><?php echo $subtitulo_bloco1?></h2>
 
                 <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="assets/img/home/garrafa.png" alt="">
 
