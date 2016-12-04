@@ -44,7 +44,7 @@ if ( $sql_bloco1->num_rows === 1 ) {
     $titulo_bloco1      = $obj->titulo;
     $subtitulo_bloco1 = $obj->subtitulo;
     $imagem_bloco1  = $obj->imagem;
-    $texto_bloco1       = $obj->texto;
+    $texto_bloco1 = substr($obj->texto, 3, -4);
 }
 
 ?>
@@ -114,9 +114,6 @@ if ( $sql_bloco1->num_rows === 1 ) {
                             echo "<li><a href='#".strtolower($value['titulo'])."' class='text-third'><i class='fa {$value['icon']}'></i> {$value['titulo']}</a></li>";
                         }
                      }
-                    // echo "<pre>";
-                    // print_r($menu_slug);die;
-                    // echo "</pre>";
                 }
                 ?>
             </ul>
@@ -134,16 +131,12 @@ if ( $sql_bloco1->num_rows === 1 ) {
             <div class="col-md-12">
                 <h1 class="title text-second"><?php echo $titulo_bloco1 ?></h1>
                 <h2 class="subtitle text-third"><?php echo $subtitulo_bloco1?></h2>
-
-                <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="assets/img/home/garrafa.png" alt="">
-
+                <img class="col-md-6 col-sm-6 col-xs-12 animated fadeInLeft" src="admin/userfiles/bloco1/<?php echo $imagem_bloco1?>" alt="">
                 <div class="col-md-6 col-sm-6 col-xs-12 animated fadeInRight delay-0-5">
-                    <p class="text-second">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    <a href="#sobre" class="btn btn-primary btn-lg text-third background-second">Leia Mais</a>
+                    <p class="text-second"><?php echo $texto_bloco1 ?></p>
+                    <a href="#<?php echo $menu_slug[1] ?>" class="btn btn-primary btn-lg text-third background-second">Leia Mais</a>
                 </div>
-
             </div>
-
         </div>
     </div>
 </section>
