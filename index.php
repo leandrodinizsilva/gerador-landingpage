@@ -74,6 +74,34 @@ if ( $sql_bloco3->num_rows === 1 ) {
     $imagem3_bloco3  = $obj->imagem3;
 }
 
+$sql_bloco4 = $DB->selectdb(
+        $db,"`titulo`,`subtitulo`,`endereco`,`email`,`texto`",
+        "`bloco4`", "`template_id`={$id_template}"
+    );
+
+if ( $sql_bloco4->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_bloco4 );
+    $titulo_bloco4       = $obj->titulo;
+    $subtitulo_bloco4  = $obj->subtitulo;
+    $endereco_bloco4 = $obj->endereco;
+    $email_bloco4       = $obj->email;
+    $texto_bloco4 = substr($obj->texto, 3, -4);
+}
+
+$sql_rodape = $DB->selectdb(
+        $db,"`texto`",
+        "`rodape`", "`template_id`={$id_template}"
+    );
+
+if ( $sql_rodape->num_rows === 1 ) {
+    $obj = $DB->objectdb( $sql_rodape );
+    $rodape = $obj->texto;
+}
+
+if (isset($_POST['enviar'])) {
+    echo "<script>alert('Mensagem enviada com sucesso!')</script>";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -240,41 +268,41 @@ if ( $sql_bloco3->num_rows === 1 ) {
 <section id="<?php echo $menu_slug[3] ?>" style="background-color:<?php echo $cor_secundaria_template ?>">
     <div class="container text-center">
         <div class="row">
-            <h1 class="title text-first">Contato</h1>
-            <h2 class="subtitle text-third">Fale conosco através dos campos abaixo</h2>
+            <h1 class="title text-first"><?php echo $titulo_bloco4 ?></h1>
+            <h2 class="subtitle text-third"><?php echo $subtitulo_bloco4 ?></h2>
             <form role="form" class="contact-form" method="post">
                 <div class="col-md-6 wow fadeInLeft" data-wow-delay=".5s">
                     <div class="form-group">
                         <div class="controls">
-                            <input type="text" class="form-control" placeholder="Name" name="name">
+                            <input type="text" class="form-control" required placeholder="Name" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="controls">
-                            <input type="email" class="form-control email" placeholder="Email" name="email">
+                            <input type="email" class="form-control" required placeholder="Email" name="email">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="controls">
-                            <input type="text" class="form-control requiredField" placeholder="Subject" name="subject">
+                            <input type="text" class="form-control" placeholder="Subject" name="subject">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="controls">
-                            <textarea rows="7" class="form-control" placeholder="Message" name="message"></textarea>
+                            <textarea rows="7" class="form-control" required placeholder="Message" name="message"></textarea>
                         </div>
                     </div>
-                    <button type="submit" id="submit" class="btn btn-lg btn-common background-first text-third">Enviar</button>
+                    <button type="submit" name="enviar" class="btn btn-lg btn-common background-first text-third">Enviar</button>
                     <div id="success" style="color:#34495e;"></div>
                 </div>
             </form>
             <div class="col-md-6 wow fadeInRight">
                 <div class="contact-info">
-                    <p class="text-first"><i class="fa fa-map-marker" class="text-first"></i> São Roque - São Paulo - Brasil</p>
-                    <p class="text-first"><i class="fa fa-envelope" class="text-first"></i> contato@adegaboavista.com.br</p>
+                    <p class="text-first"><i class="fa fa-map-marker" class="text-first"></i> <?php echo $endereco_bloco4 ?></p>
+                    <p class="text-first"><i class="fa fa-envelope" class="text-first"></i> <?php echo $email_bloco4 ?></p>
                 </div>
                 <p class="text-first">
-                    A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus, ac blandit elit.<br>
+                    <?php echo $texto_bloco4 ?><br>
                 </p>
             </div>
         </div>
@@ -282,7 +310,7 @@ if ( $sql_bloco3->num_rows === 1 ) {
 </section>
 <div id="copyright" class="background-second">
     <div class="container">
-        <div class="col-md-10"><p class="text-first">© Adega Boa Vista 2016 Todos os direitos reservados. by <a href="http://github.com/jmessiass" class="text-first">Jmessi@s</a></p></div>
+        <div class="col-md-10"><p class="text-first"><?php echo $rodape ?></p></div>
         <div class="col-md-2">
             <span class="to-top pull-right"><a href="#home"><i class="fa fa-angle-up fa-2x text-first back-top"></i></a></span>
         </div>

@@ -64,7 +64,7 @@ if (1 == 1) {
                         <td>
                             <div class="form-group">
                                 <label>Texto</label>
-                                <input type="text" name="texto_rodape" value="<?php echo $texto_rodape ?>" maxlength="20" class="form-control" />
+                                <input type="text" name="texto_rodape" value="<?php echo $texto_rodape ?>" maxlength="255" class="form-control" />
                             </div>
                         </td>
                     </tr>
