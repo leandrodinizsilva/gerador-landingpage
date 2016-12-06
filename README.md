@@ -38,3 +38,13 @@ importe as tabelas para o o mysql
 ```sh
 $ sudo mysql -u root -p gerador_landingpage < gerador_landingpage.sql
 ```
+acesse o admin pelo navegador
+```sh
+localhost/gerador-landingpage/admin/
+```
+usuário e senha padrão
+```sh
+admin 123456
+```
+
+## Boa sorte :) 
