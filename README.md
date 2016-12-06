@@ -36,5 +36,5 @@ exit
 ```
 importe as tabelas para o o mysql
 ```sh
-$ sudo mysql -u root -p gerador_landingpage < dump_estrutura.sql
+$ sudo mysql -u root -p gerador_landingpage < gerador_landingpage.sql
 ```
