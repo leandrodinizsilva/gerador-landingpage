@@ -10,10 +10,6 @@ if ( isset($_POST['entrar']) ) {
     $DB = new DB;
     $db = $DB->connect();
 
-    // echo "<pre>";
-    // print_r($db);die;
-
-    echo "<script>window.location='" . URL_DEFINITIVA . "home.php';</script>";
     $user = mysqli_real_escape_string( $db, $_POST['usuario'] );
     $pass = mysqli_real_escape_string( $db, $_POST['senha'] );
     $result = $DB->selectdb( $db,"`senha`","`usuario`","`login`='{$user}'" );

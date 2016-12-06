@@ -1,6 +1,6 @@
 <?php
 /**
-*@author Jonathan Messias
+*@author Jonathan Messias - jmcybers@gmail.com
 *@since 15/10/16
 **/
 
@@ -11,12 +11,11 @@ class DB {
 
     public function connect()
     {
-        // return 2;
-        $db = new mysqli( 'localhost', 'root', '123456', 'modelo_landingpage' );
+        $db = new mysqli( 'localhost', 'root', '123456', 'gerador_landingpage' );
         if ( $db->connect_errno > 0 ) {
             die( 'Não foi possível conectar ao banco de dados [' . $db->connect_error . ']' );
         } else {
-            define( 'URL_DEFINITIVA', "http://localhost/modelo-landingpage/admin/" );
+            define( 'URL_DEFINITIVA', "http://localhost/gerador-landingpage/admin/" );
             return $db;
         }
     }
@@ -28,31 +27,26 @@ class DB {
 
     public function selectdb( $connection, $fields, $table, $condition )
     {
-        // return "SELECT {$fields} FROM {$table} WHERE {$condition};";
         return $connection->query( "SELECT {$fields} FROM {$table} WHERE {$condition};" );
     }
 
     public function objectdb( $sql )
     {
-        // return $sql_kyara;
         return $sql->fetch_object();
     }
 
     public function insertdb( $connection, $table, $fields, $values )
     {
-        // echo "INSERT INTO {$table} ({$fields}) VALUES ({$values})";die;
         return $connection->query( "INSERT INTO {$table} ({$fields}) VALUES ({$values});" );
     }
 
     public function updatedb( $connection, $table, $fields, $condition )
     {
-        // return "UPDATE {$table} SET {$fields} WHERE {$condition};";die;
         return $connection->query( "UPDATE {$table} SET {$fields} WHERE {$condition};" );
     }
 
     public function deletedb( $connection, $table, $condition )
     {
-        // return "DELETE FROM {$table} WHERE {$condition};";
         return $connection->query( "DELETE FROM {$table} WHERE {$condition};" );
     }
 
@@ -94,7 +88,4 @@ class DB {
             return false;
         }
     }
-
-
-
 }

@@ -80,4 +80,11 @@ CREATE TABLE template (
   PRIMARY KEY(id)
 );
 
+CREATE TABLE usuario (
+  id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  login VARCHAR(20) NULL,
+  senha VARCHAR(20) NULL,
+  PRIMARY KEY(id)
+);
+
 
