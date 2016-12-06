@@ -1,7 +1,6 @@
 <?php
 session_start();
-if (1 == 1) {
-// if ( isset($_SESSION['user']) ) {
+if ( isset($_SESSION['user']) ) {
     include('inc/header_home.php');
     include('class/Paginas.php');
     ?>

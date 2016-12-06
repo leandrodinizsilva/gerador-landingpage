@@ -15,7 +15,7 @@ if ( isset($_POST['entrar']) ) {
     $result = $DB->selectdb( $db,"`senha`","`usuario`","`login`='{$user}'" );
     if ($result->num_rows === 1) {
         foreach ( $result as $value ) {
-            if ( $DB->decrypt( $value['senha'] ) === $pass ) {
+            if ( $value['senha'] === $pass ) {
                 $DB->log( $db, $_POST['usuario'], $value['senha'], 'ok' );
                 session_start();
                 $_SESSION['user'] = true;
@@ -91,7 +91,7 @@ if ( isset($_POST['entrar']) ) {
     </div>
     <footer>
         <p class="col-md-12 text-center">
-        <a href="#" target="_blank">Jmessi@s -</a> <?= date('Y') ?> | DIREITOS RESERVADOS
+        <a href="https://github.com/jmessiass/" target="_blank">Jmessi@s -</a> <?= date('Y') ?> | DIREITOS RESERVADOS
         </p>
     </footer>
 </body>
