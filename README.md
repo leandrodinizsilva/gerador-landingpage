@@ -17,9 +17,24 @@ Foi utilizado um tema no site em bootstrap, fazendo com que todo o site fique re
 
 ### Preparação do ambiente
 
-
-inicie o mysql e crie a base de dados
+instale o git
 ```sh
-sudo mysql -u root -p
+$ sudo apt-get install git
+```
+clone o projeto dentro de /var/www/ ou /var/www/html/
+```sh
+$ git clone git@github.com:jmessiass/gerador-landingpage.git
+```
+inicie o mysql
+```sh
+$ sudo mysql -u root -p
+```
+crie a base de dados
+```sh
 create database gerador_landingpage;
+exit
+```
+importe as tabelas para o o mysql
+```sh
+$ sudo mysql -u root -p gerador_landingpage < dump_estrutura.sql
 ```
