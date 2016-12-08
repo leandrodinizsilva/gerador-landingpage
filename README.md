@@ -23,7 +23,7 @@ $ sudo apt-get install git
 ```
 clone o projeto dentro de /var/www/ ou /var/www/html/
 ```sh
-$ git clone git@github.com:jmessiass/gerador-landingpage.git
+$ git clone https://github.com/jmessiass/gerador-landingpage.git
 ```
 inicie o mysql
 ```sh
