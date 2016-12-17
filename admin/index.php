@@ -91,7 +91,7 @@ if ( isset($_POST['entrar']) ) {
     </div>
     <footer>
         <p class="col-md-12 text-center">
-        <a href="https://github.com/jmessiass/" target="_blank"> Jmessi@s -</a> <?= date('Y') ?> | DIREITOS RESERVADOS
+        <a href="https://github.com/jmessiass/" target="_blank">Jmessi@s -</a> <?= date('Y') ?> | DIREITOS RESERVADOS
         </p>
     </footer>
 </body>
