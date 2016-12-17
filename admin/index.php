@@ -37,7 +37,7 @@ if ( isset($_POST['entrar']) ) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Admin - Consultoria CS</title>
+    <title>Admin - Gerador Landingpage</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="agenciaponto">
     <link rel="stylesheet" href="css/bootstrap.min.css" >
