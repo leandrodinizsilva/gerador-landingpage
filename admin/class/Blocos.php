@@ -205,8 +205,8 @@ if ( isset( $_GET['id_bloco4'] ) ) {
 
     if ( $sql_bloco4->num_rows === 1 ) {
         $obj = $DB->objectdb( $sql_bloco4 );
-        $titulo_bloco4     = $obj->titulo;
-        $subtitulo_bloco4 = $obj->subtitulo;
+        $titulo_bloco4        = $obj->titulo;
+        $subtitulo_bloco4  = $obj->subtitulo;
         $endereco_bloco4 = $obj->endereco;
         $email_bloco4       = $obj->email;
         $texto_bloco4       = $obj->texto;
