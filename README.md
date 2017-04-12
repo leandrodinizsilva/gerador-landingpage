@@ -25,6 +25,10 @@ clone o projeto dentro de /var/www/ ou /var/www/html/
 ```sh
 $ git clone https://github.com/jmessiass/gerador-landingpage.git
 ```
+inicie o apache
+```sh
+$ sudo service apache2 start
+```
 inicie o mysql
 ```sh
 $ sudo mysql -u root -p
