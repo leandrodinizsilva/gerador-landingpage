@@ -1,4 +1,4 @@
-# Gerador de Landingpage
+## Gerador de Landingpage
 
 Gere sua landingpage através de área administrativa.
 
