@@ -1,0 +1,24 @@
+
+/*template.php style*/
+.template-input {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.template-input-dates {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.urlInput {
+  width: 100%;
+}
+
+.urlDate {
+  width: 50%;
+}
+
+.urlDateLast {
+  margin-left: 10px;
+}

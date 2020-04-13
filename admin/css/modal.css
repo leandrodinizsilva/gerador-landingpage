@@ -1,0 +1,53 @@
+.modal-dialog {
+  width: 95% !important;
+}
+
+.modal-body {
+  min-height: 48vh;
+}
+
+.template-checkbox-container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.template {
+
+}
+
+.template:nth-child(2) {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.template-img-container {
+  width: 100%;
+  height: 100%;
+  min-height: 30vh;
+  min-width: 30vw;
+}
+
+.template-img {
+  background-size: cover;
+  background-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.template-text {
+  display: block;
+}
+
+.template-checkbox {
+  margin-top: 5px !important;
+  margin-right: 5px !important;
+  height: 20px;
+  width: 20px;
+  top: 0;
+  left: 0;
+}
+
+.btn-see-template {
+  margin: 3px;
+  float: right;
+}

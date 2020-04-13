@@ -6,7 +6,7 @@ if ( isset( $_GET['logout'] ) ) {
                     </div>";
 }
 if ( isset($_POST['entrar']) ) {
-    require ("inc/db.php");
+    require_once ("inc/db.php");
     $DB = new DB;
     $db = $DB->connect();
 

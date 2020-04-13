@@ -2,7 +2,7 @@
 extract($_POST);
 
 /*******************TEMPLATE ATIVO*******************/
-$sql_template_ativo = $DB->selectdb($db,"`id`,`titulo`","`template`", "ativo=1");
+$sql_template_ativo = $DB->selectdb($db,"`id`,`titulo`","`template`", "active=1");
 
 /* armazena template selecionado em sessão */
 foreach ($sql_template_ativo as $key => $value) {
@@ -11,7 +11,7 @@ foreach ($sql_template_ativo as $key => $value) {
 
 $sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
 
-/* carrega titulo do template ativo */
+/* carrega titulo do template active */
 if ( $sql_dados_template->num_rows > 0 ) {
     foreach ($sql_dados_template as $key => $value) {
         $titulo_ativo = $value['titulo'];

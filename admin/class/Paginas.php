@@ -1,37 +1,48 @@
 <?php
+include_once "admin/config.php";
+
 extract($_POST);
+if (!isset($db)){
+    require_once ("../inc/db.php");
+    $DB = new DB;
+    $db = $DB->connect();
+}
+require_once (DIR_CONTROLLER."/template_2.php");
+$template_2 = new Template_2;
+
+/*PASSAR TODAS ESSAS FUNCOES PARA O FORMATO DE FUNCOES DO KIKBIX
+RETIRAR TODAS DE SOMENTE UM ARQUIVO
+COLOCAR TODAS NO FORMATO MVC COM SUAS DEVIDAS CLASSES*/
 
 /*******************TEMPLATE ATIVO*******************/
-$sql_template_ativo = $DB->selectdb($db,"`id`,`titulo`","`template`", "ativo=1");
+$sql_template_ativo = $template_2->readActiveTemplate();
 
 // echo "<pre>";
 // print_r($sql_template_ativo);die;
 
 /* armazena template selecionado em sessão */
-if ( $sql_template_ativo->num_rows > 0 ) {
-    foreach ($sql_template_ativo as $key => $value) {
-        $_SESSION['id'] = $value['id'];
-    }
+if ( $sql_template_ativo != null ) {
+  $_SESSION['id'] = $sql_template_ativo["id"];
+  $_SESSION['template'] = str_replace("`", "",$sql_template_ativo["table"]);
 }
 
 if ( isset($_SESSION['id']) ) {
-    $sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
+  $sql_dados_template = $DB->selectdb($db,"`titulo`","`template`", "id={$_SESSION['id']}");
 }
 
 /* carrega titulo do template ativo */
-if ( $sql_template_ativo->num_rows > 0 ) {
-    foreach ($sql_template_ativo as $key => $value) {
-        $titulo_ativo = $value['titulo'];
-    }
+if ( $sql_template_ativo != null ) {
+  $titulo_ativo =  $sql_template_ativo["title"];
 }
 
 /*******************HOME*******************/
 $sql_template_home = $DB->selectdb($db,"`id`,`titulo`","`template`", 1);
+$sql_template_home_2 = $DB->selectdb($db,"`id`, `title`", "`template_2`", 1);
 
 /* selecionar um template */
 if ( isset($confirmar_home) && isset($template_home) ) {
-    $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
-    $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$template_home}'" );
+    $return_antigo_ativo = $DB->updatedb( $db, "`template`","`active`='0'","`active`='1'" );
+    $return_novo_ativo = $DB->updatedb( $db, "`template`","`active`='1'","`id`='{$template_home}'" );
     if ( $return_novo_ativo == true ) {
         echo "<script>window.location='home.php'</script>";
     }
@@ -56,37 +67,66 @@ if ( isset( $_GET['excluir_template'] ) ) {
 }
 
 /*******************TEMPLATE*******************/
-$titulo_template                = ( isset($_POST['titulo_template']) ) ? $_POST['titulo_template'] : null;
-$logotipo_template            = ( isset($_POST['logotipo_template']) ) ? $_POST['logotipo_template'] : null;
-$cor_primaria_template     = ( isset($_POST['cor_primaria_template']) ) ? $_POST['cor_primaria_template'] : null;
+$titulo_template         = ( isset($_POST['titulo_template']) ) ? $_POST['titulo_template'] : null;
+$logotipo_template       = ( isset($_POST['logotipo_template']) ) ? $_POST['logotipo_template'] : null;
+$cor_primaria_template   = ( isset($_POST['cor_primaria_template']) ) ? $_POST['cor_primaria_template'] : null;
 $cor_secundaria_template = ( isset($_POST['cor_secundaria_template']) ) ? $_POST['cor_secundaria_template'] : null;
-$cor_terciaria_template     = ( isset($_POST['cor_terciaria_template']) ) ? $_POST['cor_terciaria_template'] : null;
+$cor_terciaria_template  = ( isset($_POST['cor_terciaria_template']) ) ? $_POST['cor_terciaria_template'] : null;
+
+$url_id         = ( isset($_POST['url_id']) ) ? $_POST['url_id'] : null;
+$template_url   = ( isset($_POST['template_url']) ) ? $_POST['template_url'] : null;
+$url_date_start = ( isset($_POST['url_date_start']) ) ? $_POST['url_date_start'] : null;
+$url_date_end   = ( isset($_POST['url_date_end']) ) ? $_POST['url_date_end'] : null;
 
 /* adiciona novo template */
 if ( isset( $_POST['salvar_template']) ) {
-    $return_insert = $DB->insertdb($db,"template",
-        "`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`","
-        '{$titulo_template}',
-        '{$logotipo_template}',
-        '{$cor_primaria_template}',
-        '{$cor_secundaria_template}',
-        '{$cor_terciaria_template}'"
+  $return_insert = $DB->insertdb($db,"template",
+    "`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`","
+    '{$titulo_template}',
+    '{$logotipo_template}',
+    '{$cor_primaria_template}',
+    '{$cor_secundaria_template}',
+    '{$cor_terciaria_template}'"
     );
-    if ( $return_insert == true ) {
-        $ultimo_id = $DB->ultimoid($db, "template");
-        /* cria registro em todas as tabelas e seleciona o novo template como ativo */
-        $DB->insertdb($db,"menu","`template_id`","'{$ultimo_id}'");
-        $DB->insertdb($db,"bloco1","`template_id`","'{$ultimo_id}'");
-        $DB->insertdb($db,"bloco2","`template_id`","'{$ultimo_id}'");
-        $DB->insertdb($db,"bloco3","`template_id`","'{$ultimo_id}'");
-        $DB->insertdb($db,"bloco4","`template_id`","'{$ultimo_id}'");
-        $DB->insertdb($db,"rodape","`template_id`","'{$ultimo_id}'");
-        $return_antigo_ativo = $DB->updatedb( $db, "`template`","`ativo`='0'","`ativo`='1'" );
-        $return_novo_ativo = $DB->updatedb( $db, "`template`","`ativo`='1'","`id`='{$ultimo_id}'" );
-        echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";
+
+  foreach ($template_url as $key=>$url) {
+    if (!isset($url_id[$key])) {
+      $ultimo_id = $DB->ultimoid($db, "template");
+      $return_insert = $DB->insertdb($db,"template_url",
+      "`url`,`id_template`,`date_start`,`date_end`","
+      '{$url}',
+      '{$ultimo_id}',
+      '{$url_date_start[$key]}',
+      '{$url_date_end[$key]}'"
+      );
     } else {
-        $_GET['retorno'] = 0;
+      $ultimo_id = $DB->ultimoid($db, "template");
+      $return_insert = $DB->insertdb($db,"template_url",
+      "`url`,`id`,`id_template`,`date_start`,`date_end`","
+      '{$url}',
+      '{$url_id[$key]}',
+      '{$ultimo_id}',
+      '{$url_date_start[$key]}',
+      '{$url_date_end[$key]}'"
+      );
     }
+  }
+
+  if ( $return_insert == true ) {
+    $ultimo_id = $DB->ultimoid($db, "template");
+    /* cria registro em todas as tabelas e seleciona o novo template como ativo */
+    $DB->insertdb($db,"menu","`template_id`","'{$ultimo_id}'");
+    $DB->insertdb($db,"bloco1","`template_id`","'{$ultimo_id}'");
+    $DB->insertdb($db,"bloco2","`template_id`","'{$ultimo_id}'");
+    $DB->insertdb($db,"bloco3","`template_id`","'{$ultimo_id}'");
+    $DB->insertdb($db,"bloco4","`template_id`","'{$ultimo_id}'");
+    $DB->insertdb($db,"rodape","`template_id`","'{$ultimo_id}'");
+    $return_antigo_ativo = $DB->updatedb( $db, "`template`","`active`='0'","`active`='1'" );
+    $return_novo_ativo = $DB->updatedb( $db, "`template`","`active`='1'","`id`='{$ultimo_id}'" );
+    //echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";
+  } else {
+    $_GET['retorno'] = 0;
+  }
 }
 
 /* exibe campos de template */
@@ -103,9 +143,26 @@ if ( isset( $_GET['id_template'] ) ) {
         $cor_primaria_template     = $obj->cor_primaria;
         $cor_secundaria_template = $obj->cor_secundaria;
         $cor_terciaria_template     = $obj->cor_terciaria;
+
+        $sql_template_url = $DB->selectdb(
+          $db,"`id`,`url`,`id_template`,`date_start`,`date_end`",
+          "`template_url`", "`id_template`= '{$_SESSION['id']}'"
+        );
+        
+        
+        $sql_template_url = mysqli_fetch_all ($sql_template_url, MYSQLI_ASSOC);
+         foreach ($sql_template_url as $key=>$url_dates) {
+          $url_info[] = array(
+             "id" => $url_dates['id'],
+             "url" => $url_dates['url'],
+             "id_template" => $url_dates['id_template'],
+             "date_start" => $url_dates['date_start'],
+             "date_end" => $url_dates['date_end']
+           );  
+        }
     }
 
-     if ( isset($_POST['update_template']) ) {
+    if ( isset($_POST['update_template']) ) {
         $sql_update_template = $DB->updatedb(
             $db, "`template`","
             `titulo`='{$_POST['titulo_template']}',
@@ -116,6 +173,37 @@ if ( isset( $_GET['id_template'] ) ) {
             "`id`='{$_SESSION['id']}'"
         );
 
+    $url_id         = ( isset($_POST['url_id']) ) ? $_POST['url_id'] : null;
+    $template_url   = ( isset($_POST['template_url']) ) ? $_POST['template_url'] : null;
+    $url_date_start = ( isset($_POST['url_date_start']) ) ? $_POST['url_date_start'] : null;
+    $url_date_end   = ( isset($_POST['url_date_end']) ) ? $_POST['url_date_end'] : null;
+
+    foreach ($template_url as $key=>$url_info) {
+        if (isset($url_id[$key]) && $url_id[$key] != null ) {
+            $sql_template_url = $DB->updatedb(
+                $db, "`template_url`","
+                `url` = '{$template_url[$key]}',
+                `date_start` = '{$url_date_start[$key]}',
+                `date_end` = '{$url_date_end[$key]}'", "
+                `id` = '{$url_id[$key]}'"            
+            );
+            print_r("aqui");
+        } else {
+            $sql_template_url = $DB->insertdb(
+                $db, "`template_url`",
+                "`url`, `date_start`, `date_end`, id_template",
+                "'{$template_url[$key]}',
+                '{$url_date_start[$key]}',
+                '{$url_date_end[$key]}',
+                '{$_SESSION['id']}'
+                "
+            );
+            print_r("Aqui 2");
+        }
+        /*AO PASSAR PARA A MODELAGEM DO KIKBIX ALTERARA A FUNC ABAIXO PARA VERIFICAR O RETORNO, AO CONTRARIO DE VERRIFICAR SE O ID FOI INSERIDO OU NÃO*/
+    }
+
+    print_r($_POST);
         if ( isset($sql_update_template) ) {
             echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";
         } else {
@@ -227,8 +315,6 @@ if ( isset( $_POST['update_rodape']) ) {
     }
 }
 
-/* exibe campos do rodapé */
-if ( isset( $_GET['id_rodape'] ) ) {
     $sql_rodape = $DB->selectdb(
         $db,"`id`,`texto`",
         "`rodape`", "`template_id` = '{$_SESSION['id']}'"
@@ -238,4 +324,16 @@ if ( isset( $_GET['id_rodape'] ) ) {
         $obj = $DB->objectdb( $sql_rodape );
         $texto_rodape     = $obj->texto;
     }
+/* FUNCOES AJAX*/
+/* REMOVER TEMPLATE URL*/
+if ( isset($_POST['remove_url']) ) {
+    $id = $_POST['remove_url'];
+    $delete_url = $DB->deletedb($db,"`template_url`","`id` = '{$id}'");
+
+    return json_encode($delete_url);
+} else if (isset($_POST['remove_url_2'])) {
+    $id = $_POST['remove_url_2'];
+    $delete_url = $DB->deletedb($db,"`template_url_2`","`id` = '{$id}'");
+
+    return json_encode($delete_url);
 }

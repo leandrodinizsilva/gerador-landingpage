@@ -1,5 +1,5 @@
 <?php
-require ("inc/db.php");
+require_once ("inc/db.php");
 $DB = new DB;
 $db = $DB->connect();
 ?>
@@ -13,6 +13,7 @@ $db = $DB->connect();
     <link rel="stylesheet" href="<?php echo URL_DEFINITIVA ?>css/bootstrap.min.css" >
     <link rel="stylesheet" href="<?php echo URL_DEFINITIVA ?>css/jquery.dataTables.css" >
     <link rel="stylesheet" href="<?php echo URL_DEFINITIVA ?>css/style.css" >
+    <link rel="stylesheet" href="<?php echo URL_DEFINITIVA ?>css/modal.css">
     <script src="<?php echo URL_DEFINITIVA ?>js/jquery-2.1.4.min.js"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>

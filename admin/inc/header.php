@@ -1,7 +1,8 @@
 <?php
-require ("inc/db.php");
+require_once ("db.php");
 $DB = new DB;
 $db = $DB->connect();
+include_once ('../admin/controller/template_2.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

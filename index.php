@@ -1,12 +1,12 @@
 <?php
-require ("admin/inc/db.php");
+require_once ("admin/inc/db.php");
 $DB = new DB;
 $db = $DB->connect();
 
 $sql_template = $DB->selectdb(
-        $db,"`id`,`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`",
-        "`template`", "`ativo`=1"
-    );
+  $db,"`id`,`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`",
+  "`template`", "`active`=1"
+);
 
 if (isset($sql_template) && $sql_template->num_rows === 1) {
 
@@ -19,6 +19,23 @@ if (isset($sql_template) && $sql_template->num_rows === 1) {
         $cor_secundaria_template = $obj->cor_secundaria;
         $cor_terciaria_template     = $obj->cor_terciaria;
     }
+
+    
+    $sql_template_url = $DB->selectdb(
+      $db,"`id`,`url`,`id_template`,`date_start`,`date_end`",
+      "`template_url`", "`id_template`=$id_template"
+    );
+
+    // $sql_template_url = $sql_template_url->rows;
+    // foreach ($sql_template_url as $key=>$url_dates) {
+    //   $url_info[] = array(
+    //     "id" => $url_dates['id'],
+    //     "url" => $url_dates['url'],
+    //     "id_template" => $url_date['id_template'],
+    //     "date_start" => $url_date['date_start'],
+    //     "date_end" => $url_date['date_end']
+    //   );
+    // }
 
     $sql_menu = $DB->selectdb(
             $db,"`id`,`cor_selecionado`",
