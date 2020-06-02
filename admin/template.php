@@ -1,9 +1,9 @@
 <?php
-session_start();
-if ( isset($_SESSION['user']) ) {
-  include('inc/header.php');
-  include('class/Paginas.php');
-  ?>
+  session_start();
+  if ( isset($_SESSION['user']) ) {
+    include('inc/header.php');
+    include('class/Paginas.php');
+?>
 
   <link rel="stylesheet" type="text/css" href="./css/template.css">
   <ol class="breadcrumb">
@@ -75,8 +75,8 @@ if ( isset($_SESSION['user']) ) {
                           <td>
                               <div class="form-group url-container">
                                 <?php
-                                  if (isset($url_info)) {
-                                    foreach ($url_info as $url_data) { ?>
+                                  if (isset($sql_template_url)) {
+                                    foreach ($sql_template_url as $url_data) { ?>
                                       <div id="container-links-<?=$url_data['id']; ?>">
                                         <label>
                                           Link para Página
@@ -101,9 +101,8 @@ if ( isset($_SESSION['user']) ) {
                                       <button type="button" class="btn_remove_url" name="remove_url" value="" onclick='removeUrlInput(this.value, )' >x</button>
                                     </label>
                                       <div class="template-input">
-                                        <input type="text" name="template_url[]" required class="form-control urlInput" placeholder="titulo-icone" />
+                                        <input type="text" name="template_url[]" required class="form-control urlInput" placeholder="Link" />
                                         <div class="template-input-dates">
-                                          <input type="hidden" name="url_id[]" class="form-control"> </input>
                                           <input type="time" name="url_date_start[]" class="form-control urlDate"> </input>
                                           <input type="time" name="url_date_end[]" class="form-control urlDate urlDateLast"> </input>
                                         </div>

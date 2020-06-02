@@ -22,7 +22,7 @@ $sql_template_ativo = $template_2->readActiveTemplate();
 
 /* armazena template selecionado em sessão */
 if ( $sql_template_ativo != null ) {
-  $_SESSION['id'] = $sql_template_ativo["id"];
+  $_SESSION['id'] = $sql_template_ativo["template_id"];
   $_SESSION['template'] = str_replace("`", "",$sql_template_ativo["table"]);
 }
 
@@ -36,8 +36,8 @@ if ( $sql_template_ativo != null ) {
 }
 
 /*******************HOME*******************/
-$sql_template_home = $DB->selectdb($db,"`id`,`titulo`","`template`", 1);
-$sql_template_home_2 = $DB->selectdb($db,"`id`, `title`", "`template_2`", 1);
+$sql_template_home = $DB->selectdb($db,"`id`,`titulo`","`template`", "`user_id` = '{$_SESSION["user-id"]}'");
+$sql_template_home_2 = $DB->selectdb($db,"`id`, `title`", "`template_2`", "`user_id` = '{$_SESSION["user-id"]}'");
 
 /* selecionar um template */
 if ( isset($confirmar_home) && isset($template_home) ) {
@@ -81,14 +81,15 @@ $url_date_end   = ( isset($_POST['url_date_end']) ) ? $_POST['url_date_end'] : n
 /* adiciona novo template */
 if ( isset( $_POST['salvar_template']) ) {
   $return_insert = $DB->insertdb($db,"template",
-    "`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`","
+    "`titulo`,`logotipo`,`cor_primaria`,`cor_secundaria`,`cor_terciaria`, `user_id`","
     '{$titulo_template}',
     '{$logotipo_template}',
     '{$cor_primaria_template}',
     '{$cor_secundaria_template}',
-    '{$cor_terciaria_template}'"
+    '{$cor_terciaria_template}',
+    '{$_SESSION["user-id"]}'"
     );
-
+ 
   foreach ($template_url as $key=>$url) {
     if (!isset($url_id[$key])) {
       $ultimo_id = $DB->ultimoid($db, "template");
@@ -121,9 +122,20 @@ if ( isset( $_POST['salvar_template']) ) {
     $DB->insertdb($db,"bloco3","`template_id`","'{$ultimo_id}'");
     $DB->insertdb($db,"bloco4","`template_id`","'{$ultimo_id}'");
     $DB->insertdb($db,"rodape","`template_id`","'{$ultimo_id}'");
-    $return_antigo_ativo = $DB->updatedb( $db, "`template`","`active`='0'","`active`='1'" );
-    $return_novo_ativo = $DB->updatedb( $db, "`template`","`active`='1'","`id`='{$ultimo_id}'" );
-    //echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";
+
+    $user_id = $_SESSION["user-id"];
+    $id_active_template = $DB->selectdb(
+      $db, "`id`", "`active_template`", "`user_id` = '{$user_id}'"
+    );
+    $id_active_template = mysqli_fetch_all ($id_active_template, MYSQLI_ASSOC);
+    $id_active_template = $id_active_template[0]["id"];
+
+    $return_novo_ativo = "INSERT INTO `active_template` (`id`, `template_id`, `table_name`, `user_id`) VALUES (" .
+    "'{$id_active_template}', '{$ultimo_id}', 'template', '{$user_id}') ON DUPLICATE KEY UPDATE " .
+    "`template_id` = '{$ultimo_id}', `table_name` = 'template', `user_id` = '{$user_id}'; ";
+
+    $DB->userQuery($db, $return_novo_ativo);
+    echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";
   } else {
     $_GET['retorno'] = 0;
   }
@@ -148,8 +160,7 @@ if ( isset( $_GET['id_template'] ) ) {
           $db,"`id`,`url`,`id_template`,`date_start`,`date_end`",
           "`template_url`", "`id_template`= '{$_SESSION['id']}'"
         );
-        
-        
+
         $sql_template_url = mysqli_fetch_all ($sql_template_url, MYSQLI_ASSOC);
          foreach ($sql_template_url as $key=>$url_dates) {
           $url_info[] = array(
@@ -187,7 +198,6 @@ if ( isset( $_GET['id_template'] ) ) {
                 `date_end` = '{$url_date_end[$key]}'", "
                 `id` = '{$url_id[$key]}'"            
             );
-            print_r("aqui");
         } else {
             $sql_template_url = $DB->insertdb(
                 $db, "`template_url`",
@@ -198,12 +208,10 @@ if ( isset( $_GET['id_template'] ) ) {
                 '{$_SESSION['id']}'
                 "
             );
-            print_r("Aqui 2");
         }
         /*AO PASSAR PARA A MODELAGEM DO KIKBIX ALTERARA A FUNC ABAIXO PARA VERIFICAR O RETORNO, AO CONTRARIO DE VERRIFICAR SE O ID FOI INSERIDO OU NÃO*/
     }
 
-    print_r($_POST);
         if ( isset($sql_update_template) ) {
             echo "<script>window.location='template.php?id_template=1&retorno=1'</script>";
         } else {
@@ -315,6 +323,7 @@ if ( isset( $_POST['update_rodape']) ) {
     }
 }
 
+if ( isset($_SESSION["id"])) {
     $sql_rodape = $DB->selectdb(
         $db,"`id`,`texto`",
         "`rodape`", "`template_id` = '{$_SESSION['id']}'"
@@ -324,6 +333,7 @@ if ( isset( $_POST['update_rodape']) ) {
         $obj = $DB->objectdb( $sql_rodape );
         $texto_rodape     = $obj->texto;
     }
+}
 /* FUNCOES AJAX*/
 /* REMOVER TEMPLATE URL*/
 if ( isset($_POST['remove_url']) ) {

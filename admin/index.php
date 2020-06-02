@@ -12,13 +12,14 @@ if ( isset($_POST['entrar']) ) {
 
     $user = mysqli_real_escape_string( $db, $_POST['usuario'] );
     $pass = mysqli_real_escape_string( $db, $_POST['senha'] );
-    $result = $DB->selectdb( $db,"`senha`","`usuario`","`login`='{$user}'" );
+    $result = $DB->selectdb( $db,"`senha`,`id`","`usuario`","`login`='{$user}'" );
     if ($result->num_rows === 1) {
         foreach ( $result as $value ) {
             if ( $value['senha'] === $pass ) {
                 $DB->log( $db, $_POST['usuario'], $value['senha'], 'ok' );
                 session_start();
                 $_SESSION['user'] = true;
+                $_SESSION["user-id"] = $value["id"];
                 echo "<script>window.location='" . URL_DEFINITIVA . "home.php';</script>";
             } else {
                 $DB->log( $db, $_POST['usuario'], $_POST['senha'], 'senha invalida' );

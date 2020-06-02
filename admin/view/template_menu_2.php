@@ -3,7 +3,7 @@ session_start();
 if ( isset($_SESSION['user']) ) {
   include('../view/header_template_2.php');
   include('../class/Paginas.php');
-  //
+  
   ?>
 
   <link rel="stylesheet" type="text/css" href="./css/template.css">
@@ -115,7 +115,7 @@ if ( isset($_SESSION['user']) ) {
                           <td>
                               <div class="form-group url-container">
                                 <?php
-                                  if (isset($url_info)) {
+                                  if (isset($url_info) && $url_info != null) {
                                     foreach ($url_info as $url_data) { ?>
                                       <div id="container-links-<?=$url_data['id']; ?>">
                                         <label>

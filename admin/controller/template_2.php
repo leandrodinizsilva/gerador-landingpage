@@ -41,7 +41,7 @@ class Template_2 extends Controller {
   }
 
   public function createTemplate($postInfo) {
-    $postInfo['user-id'] = $_SESSION['user'];
+    $postInfo['user-id'] = $_SESSION['user-id'];
     
     if (!isset($postInfo["template-id"])) {
       $postInfo["template-id"] = $this->model->ultimoId("`template_2`");
@@ -55,15 +55,21 @@ class Template_2 extends Controller {
 
     $this->model->create($postInfo);
     $this->model->createTemplateUrl($postInfo);
-    $this->changeAllToInactive();
-    $this->model->updateTemplateToActive($postInfo["template-id"], "`template_2`");
+
+    $active_template = $this->model->readActiveTemplate();
+    $active_template_id = null;
+    if (isset($active_template["id"])) {
+      $active_template_id = $active_template["id"];
+    }
+
+    $this->model->updateTemplateToActive($active_template_id,$postInfo["template-id"], "template_2", $_SESSION["user-id"]);
 
     $_SESSION["id"] = $postInfo["template-id"];
     $_SESSION["edit"] = true;
     if ($bg_img["error"] == 1) {
       header("Location: ../view/template_menu_2.php?errorImg=1");
     } else {
-      header("Location: ../view/template_menu_2.php?");
+      header("Location: ../view/template_menu_2.php?id_template=1");
     }
   }
 
@@ -127,6 +133,11 @@ class Template_2 extends Controller {
     return $active;
   }
 
+  public function readActiveTemplateByUser($userId) {
+    $active = $this->model->readActiveTemplateByUser($userId);
+    return $active;
+  }
+
   public function readTemplateBlock1($id) {
     $block1 = $this->model->readTemplateBlock1($id);
     $block1 = $this->sqlToArray($block1);
@@ -187,30 +198,26 @@ class Template_2 extends Controller {
 
   public function changeActiveTemplate($postInfo) {
     $oldActive = $this->readActiveTemplate();
-    $setInactive = $this->model->updateTemplateToInactive($oldActive["id"], $oldActive["table"]);
+    $id = $oldActive["id"];
+
     if(isset($postInfo["template_home"]) && $postInfo["template_home"] != "") {
-      $setActive = $this->model->updateTemplateToActive($postInfo["template_home"], "template");
+      $setActive = $this->model->updateTemplateToActive($oldActive["id"], $postInfo["template_home"], "template", $_SESSION["user-id"]);
     } else if (isset($postInfo["template_home_2"]) && $postInfo["template_home_2"] != "") {
-      $setActive = $this->model->updateTemplateToActive($postInfo["template_home_2"], "template_2");
+      $setActive = $this->model->updateTemplateToActive($oldActive["id"], $postInfo["template_home_2"], "template_2", $_SESSION["user-id"]);
     }
 
     header("Location: ../home.php");
   }
 
-  public function changeAllToInactive() {
-    $result = $this->model->updateAllToInactive();
-    return $result;
-  }
-
-  public function generateTemplate() {
-    $active = $this->readActiveTemplate();
-    if ($active['table'] == "`template_2`") {
+  public function generateTemplate($userId) {
+    $active = $this->readActiveTemplateByUser($userId);
+    if ($active['table'] == "template_2") {
       $page = array(
-        "main" => $this->readTemplate($active["id"]),
-        "block1" => $this->readTemplateBlock1($active["id"]),
-        "block2" => $this->readTemplateBlock2($active["id"]),
-        "testimonial" => $this->readTemplateTestimonial2($active["id"]),
-        "footer" => $this->readTemplateFooter($active["id"])
+        "main" => $this->readTemplate($active["template_id"]),
+        "block1" => $this->readTemplateBlock1($active["template_id"]),
+        "block2" => $this->readTemplateBlock2($active["template_id"]),
+        "testimonial" => $this->readTemplateTestimonial2($active["template_id"]),
+        "footer" => $this->readTemplateFooter($active["template_id"])
       );
     }
 

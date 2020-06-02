@@ -13,17 +13,41 @@ if (isset($_POST["template-id"]) || isset($_SESSION["id"])) {
 
     $templateInfo = new Template_2;
     $templateData = $templateInfo->readTemplate($id);
-    $template_id = $templateData["data"][0]["id"];
-    $template_title = $templateData["data"][0]["title"];
-    $template_main_text = $templateData["data"][0]["main_text"];
-    $template_logo = $templateData["data"][0]["logo"];
-    $main_color = $templateData["data"][0]["main_color"];
-    $secondary_color = $templateData["data"][0]["secondary_color"];
-    $main_text_color = $templateData["data"][0]["main_text_color"];
-    $secondary_text_color = $templateData["data"][0]["secondary_text_color"];
-    $bg_img = $templateData["data"][0]["background_image"];
+    if (isset($templateData["data"][0]["id"]) && isset($_GET["id_template"])) {
+        $template_id = $templateData["data"][0]["id"];
+        $template_title = $templateData["data"][0]["title"];
+        $template_main_text = $templateData["data"][0]["main_text"];
+        $template_logo = $templateData["data"][0]["logo"];
+        $main_color = $templateData["data"][0]["main_color"];
+        $secondary_color = $templateData["data"][0]["secondary_color"];
+        $main_text_color = $templateData["data"][0]["main_text_color"];
+        $secondary_text_color = $templateData["data"][0]["secondary_text_color"];
+        $bg_img = $templateData["data"][0]["background_image"];       
+        $url_info = $templateData["url"];
+    } else if (isset($_SESSION["edit"]) && $_SESSION["edit"] == true) {
+        $template_id = null;
+        $template_title = null;
+        $template_main_text = null;
+        $template_logo = null;
+        $main_color = null;
+        $secondary_color = null;
+        $main_text_color = null;
+        $secondary_text_color = null;
+        $bg_img = null;
+        $url_info = null;
+    } else { 
+        $template_id = null;
+        $template_title = null;
+        $template_main_text = null;
+        $template_logo = null;
+        $main_color = null;
+        $secondary_color = null;
+        $main_text_color = null;
+        $secondary_text_color = null;
+        $bg_img = null;
+        $url_info = null;
+    }
     
-    $url_info = $templateData["url"];
 
     $block1 = $templateInfo->readTemplateBlock1($_SESSION["id"]);
     if ($block1 != false) {

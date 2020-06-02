@@ -32,6 +32,11 @@ public function selectdb( $connection, $fields, $table, $condition )
   return $connection->query( "SELECT {$fields} FROM {$table} WHERE {$condition};" );
 }
 
+public function userQuery($connection, $query)
+{
+  return $connection->query($query);
+}
+
 public function objectdb( $sql )
 {
   return $sql->fetch_object();

@@ -46,8 +46,8 @@ class Template_2_Model {
       if (isset($data["url-id"][$key])) {
         $query = $this->db->updatedb($this->dbConection, "`template_url_2`",
         "`url` =  '{$url}',
-        `date_start` = '{$data["url-date-start"]}',
-        `date_end` = '{$data["url-date-end"]}'
+        `date_start` = '{$data["url-date-start"][$key]}',
+        `date_end` = '{$data["url-date-end"][$key]}'
         ", " `id` = '{$data["url-id"][$key]}'");
       } else {
         $query = $this->db->insertdb($this->dbConection, "`template_url_2`",
@@ -176,21 +176,57 @@ class Template_2_Model {
   }
 
   public function readActiveTemplate() {
-    $template1 = $this->db->selectdb($this->dbConection, "*", "`template`", "active = 1");
-    $template2 = $this->db->selectdb($this->dbConection, "*",  $this->table, "active = 1");
-    $template1 = mysqli_fetch_all ($template1, MYSQLI_ASSOC);
-    $template2 = mysqli_fetch_all ($template2, MYSQLI_ASSOC);
-    if (isset($template1[0]["active"]) && $template1[0]["active"] == 1) {
+    $template = $this->db->selectdb($this->dbConection, "*", "`active_template`", "`user_id` = '{$_SESSION["user-id"]}'");
+    $template = mysqli_fetch_all ($template, MYSQLI_ASSOC);
+
+    $table = $template[0]["table_name"];
+    $tableInfo = $this->db->selectdb($this->dbConection, "*", "`$table`", "`id` = '{$template[0]["template_id"]}'");
+    $tableInfo = mysqli_fetch_all($tableInfo, MYSQLI_ASSOC);
+
+    if (isset($tableInfo[0]["titulo"])) {
+      $title = $tableInfo[0]["titulo"];
+    } else if (isset($tableInfo[0]["title"])) {
+      $title = $tableInfo[0]["title"];
+    } else {
+      $title = null;
+    }
+
+    if (isset($template[0]["id"]) && $template[0]["id"] != null) {
       $activeTemplate = array (
-        "id" => $template1[0]["id"],
-        "title" => $template1[0]["titulo"],
-        "table" => "`template`"
+        "id" => $template[0]["id"],
+        "template_id" => $template[0]["template_id"],
+        "title" => $title,
+        "table" => $table
       );
-    } else if (isset($template2[0]["active"]) && $template2[0]["active"] == 1) {
+    } else {
+      $activeTemplate = null;
+    }
+
+    return $activeTemplate;
+  }
+
+  public function readActiveTemplateByUser($userId) {
+    $template = $this->db->selectdb($this->dbConection, "*", "`active_template`", "`user_id` = '{$userId}'");
+    $template = mysqli_fetch_all ($template, MYSQLI_ASSOC);
+
+    $table = $template[0]["table_name"];
+    $tableInfo = $this->db->selectdb($this->dbConection, "*", "`$table`", "`id` = '{$template[0]["template_id"]}'");
+    $tableInfo = mysqli_fetch_all($tableInfo, MYSQLI_ASSOC);
+
+    if (isset($tableInfo[0]["titulo"])) {
+      $title = $tableInfo[0]["titulo"];
+    } else if (isset($tableInfo[0]["title"])) {
+      $title = $tableInfo[0]["title"];
+    } else {
+      $title = null;
+    }
+
+    if (isset($template[0]["id"]) && $template[0]["id"] != null) {
       $activeTemplate = array (
-        "id" => $template2[0]["id"],
-        "title" => $template2[0]["title"],
-        "table" => "`template_2`"
+        "id" => $template[0]["id"],
+        "template_id" => $template[0]["template_id"],
+        "title" => $title,
+        "table" => $table
       );
     } else {
       $activeTemplate = null;
@@ -219,35 +255,13 @@ class Template_2_Model {
     return $result;
   }
 
-  public function updateTemplateToInactive($id, $table) {
-    $result = $this->db->updatedb(
-      $this->dbConection, $table, "
-      `active` = 0","
-      `id`= '{$id}'"
-    );
-  }
+  public function updateTemplateToActive($id, $id_template, $table, $user_id) {
+    $query = "INSERT INTO `active_template` (`id`, `template_id`, `table_name`, `user_id`) VALUES (" .
+    "'{$id}', '{$id_template}', '{$table}', '{$user_id}') ON DUPLICATE KEY UPDATE " .
+    "`template_id` = '{$id_template}', `table_name` = '{$table}', `user_id` = '{$user_id}'; ";
 
-  public function updateTemplateToActive($id, $table) {
-    $result = $this->db->updatedb(
-      $this->dbConection, $table, "
-      `active` = 1","
-      `id`= '{$id}'"
-    );
-  }
-
-  public function updateAllToInactive() {
-    $this->db->updatedb(
-      $this->dbConection, "`template`","
-      `active` = 0",
-      "id = id"
-    );
-    $this->db->updatedb(
-      $this->dbConection, "`template_2`","
-      `active` = 0",
-      "id = id"
-    );
-
-    return true;
+    $result = $this->dbConection->query($query);
+    return $result;
   }
 
   public function update($data) {
